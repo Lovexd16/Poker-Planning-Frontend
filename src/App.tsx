@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Project from "./components/pages/project/Project";
+import Issue from "./components/pages/issue/Issue";
+import IssueDetails from "./components/pages/issue/IssueDetails";
+import Login from "./components/pages/login/Login";
+import Register from "./components/pages/register/Register";
+import Statistics from "./components/pages/statistics/Statistics";
 
 function App() {
   const [page, setPage] = useState<string>("");
@@ -23,7 +29,17 @@ function App() {
   }, [page]);
   return (
     <>
-      <h1>Hej</h1>
+      <h1>Poker Planning</h1>
+      {
+        {
+          project: <Project />,
+          issue: <Issue />,
+          issueDetails: <IssueDetails />,
+          login: <Login />,
+          register: <Register />,
+          statistics: <Statistics />,
+        }[page]
+      }
     </>
   );
 }
