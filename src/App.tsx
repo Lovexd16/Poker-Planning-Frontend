@@ -6,9 +6,11 @@ import IssueDetails from "./components/pages/issue/IssueDetails";
 import Login from "./components/pages/login/Login";
 import Register from "./components/pages/register/Register";
 import Statistics from "./components/pages/statistics/Statistics";
+import Navigation from "./components/navigation/Navigation";
 
 function App() {
   const [page, setPage] = useState<string>("");
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
     let pageUrl = page;
@@ -27,16 +29,20 @@ function App() {
 
     window.history.pushState(null, "", "?page=" + pageUrl);
   }, [page]);
+
+
   return (
     <>
       <h1>Poker Planning</h1>
+      <Navigation setPage={setPage} setIsLoggedIn={setIsLoggedIn} isLoggedIn={false} />
       {
         {
+
+          login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,
+          register: <Register />,
           project: <Project />,
           issue: <Issue />,
           issueDetails: <IssueDetails />,
-          login: <Login />,
-          register: <Register />,
           statistics: <Statistics />,
         }[page]
       }
