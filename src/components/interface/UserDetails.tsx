@@ -1,6 +1,6 @@
-interface UserDetails{
+interface UserDetailsInterface{
     username: string;
     password: string;
 }
 
-export default UserDetails;
+export default UserDetailsInterface;

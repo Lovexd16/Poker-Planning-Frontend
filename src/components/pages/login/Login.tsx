@@ -1,5 +1,5 @@
 import { useState } from "react";
-import UserDetails from "../../interface/UserDetails";
+import UserDetailsInterface from "../../interface/UserDetails";
 
 interface Props {
   setPage: (page: string) => void;
@@ -8,10 +8,12 @@ interface Props {
 
 function Login({setPage, setIsLoggedIn}: Props) {
 
-  const [newLogin, setNewLogin] = useState<UserDetails>({
+  const [newLogin, setNewLogin] = useState<UserDetailsInterface>({
     username: "",
     password: ""
   });
+
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const loginUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ function Login({setPage, setIsLoggedIn}: Props) {
    })
    .then(response => {
        if (!response.ok) {
-           throw new Error("Kunde inte logga in!");
+           throw new Error("Fel användarnamn eller lösenord, prova igen!");
        }
        return response.text(); 
    })
@@ -40,12 +42,14 @@ function Login({setPage, setIsLoggedIn}: Props) {
    })
    .catch(error => {
        console.error("Error logging in:", error);
+       setErrorMessage(error.message);
    });
 };
 
   return (
       <div className="login">
         <form onSubmit={loginUser}>
+          <h2>Logga in</h2>
           <label>
             Användarnamn<br />
             <input type ="text" required value={newLogin.username} onChange={(e) => setNewLogin({...newLogin, username: e.target.value})}></input>
@@ -54,6 +58,7 @@ function Login({setPage, setIsLoggedIn}: Props) {
             Lösenord<br />
             <input type ="password" required value={newLogin.password} onChange={(e) => setNewLogin({...newLogin, password: e.target.value})}></input>
           </label><br/><br/>
+          {errorMessage && <p>{errorMessage}</p>}
           <button type="submit">Logga in</button>
         </form>
       </div>
