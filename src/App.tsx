@@ -30,16 +30,18 @@ function App() {
     window.history.pushState(null, "", "?page=" + pageUrl);
   }, [page]);
 
-
   return (
     <>
       <h1>Poker Planning</h1>
-      <Navigation setPage={setPage} setIsLoggedIn={setIsLoggedIn} isLoggedIn={false} />
+      <Navigation
+        setPage={setPage}
+        setIsLoggedIn={setIsLoggedIn}
+        isLoggedIn={false}
+      />
       {
         {
-
           login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,
-          register: <Register />,
+          register: <Register setPage={setPage} />,
           project: <Project />,
           issue: <Issue />,
           issueDetails: <IssueDetails />,
