@@ -43,7 +43,6 @@ function Login({setPage, setIsLoggedIn}: Props) {
    });
 };
 
-
   return (
       <div className="login">
         <form onSubmit={loginUser}>

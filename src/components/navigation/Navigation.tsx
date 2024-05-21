@@ -1,3 +1,4 @@
+import Logout from "../pages/login/Logout";
 
 interface Props {
   setPage: ((page: string) => void);
@@ -5,19 +6,19 @@ interface Props {
   setIsLoggedIn: (loggedIn: boolean) => void;
 }
 
-function Navigation(props: Props) {
-
-
+function Navigation({ setPage, isLoggedIn, setIsLoggedIn }: Props) {
 
   return (
-
     <div className="header">
-        <>
-        <button onClick={() => props.setPage("register")}>Registrera</button>
-        <button onClick={() => props.setPage("login")}>Logga in</button>
-        </>
+      {isLoggedIn ? (
+        <Logout setPage={setPage} setIsLoggedIn={setIsLoggedIn} />
+      ) : (
+        <button onClick={() => setPage("login")}>Logga in</button>
+      )}
+      {!isLoggedIn && (
+        <button onClick={() => setPage("register")}>Registrera</button>
+      )}
     </div>
-
   );
 }
 
