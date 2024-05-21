@@ -1,15 +1,18 @@
 import { useState } from "react";
-import UserDetails from "../../interface/UserDetails";
+import UserDetailsInterface from "../../interface/UserDetails";
 
 interface Props {
   setPage: (page: string) => void;
 }
 
 function Register({ setPage }: Props) {
-  const [newUser, setNewUser] = useState<UserDetails>({
+  const [newUser, setNewUser] = useState<UserDetailsInterface>({
     username: "",
     password: "",
   });
+
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
 
   const registerUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,7 +26,7 @@ function Register({ setPage }: Props) {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Användarnamnet är upptaget.");
+          throw new Error("Användarnamnet är upptaget, prova ett annat namn!");
         }
         return response.json();
       })
@@ -33,12 +36,14 @@ function Register({ setPage }: Props) {
       })
       .catch((error) => {
         console.error("Fel vid tillägning: ", error);
+        setErrorMessage(error.message);
       });
   };
 
   return (
     <div className="register">
       <form onSubmit={registerUser}>
+        <h2>Registrera</h2>
         <label>
           Användarnamn
           <br />
@@ -67,6 +72,7 @@ function Register({ setPage }: Props) {
         </label>
         <br />
         <br />
+        {errorMessage && <p>{errorMessage}</p>}
         <button type="submit">Registrera</button>
       </form>
     </div>
