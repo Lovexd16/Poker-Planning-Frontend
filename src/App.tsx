@@ -34,10 +34,9 @@ function App() {
   return (
     <>
       <h1>Poker Planning</h1>
-      <Navigation setPage={setPage} setIsLoggedIn={setIsLoggedIn} isLoggedIn={false} />
+      <Navigation setPage={setPage} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
       {
         {
-
           login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,
           register: <Register />,
           project: <Project />,
