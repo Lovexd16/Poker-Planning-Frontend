@@ -7,10 +7,19 @@ import Login from "./components/pages/login/Login";
 import Register from "./components/pages/register/Register";
 import Statistics from "./components/pages/statistics/Statistics";
 import Navigation from "./components/navigation/Navigation";
+import NewProject from "./components/pages/project/NewProject";
 
 function App() {
   const [page, setPage] = useState<string>("");
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
+    const savedState = localStorage.getItem("isLoggedIn");
+      return savedState ? JSON.parse(savedState) : false;
+    });
+  
+    useEffect(() => {
+      localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
+    }, [isLoggedIn]);
 
   useEffect(() => {
     let pageUrl = page;
@@ -43,6 +52,7 @@ function App() {
           issue: <Issue />,
           issueDetails: <IssueDetails />,
           statistics: <Statistics />,
+          newproject: <NewProject setPage={setPage}/>
         }[page]
       }
     </>
