@@ -32,7 +32,7 @@ function App() {
         pageUrl = getUrl;
         setPage(getUrl);
       } else {
-        pageUrl = "project";
+        pageUrl = "login";
       }
     }
 
