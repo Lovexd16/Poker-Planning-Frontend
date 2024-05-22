@@ -2,19 +2,19 @@ import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 
 import ProjectInterface from "../../interface/ProjectInterface";
-import NewProject from "./NewProject";
 import SelectedProject from "./SelectedProject";
+import InviteUser from "./InviteUser";
 
 function Project() {
   const [projects, setProjects] = useState<ProjectInterface[]>([]);
-  const [selectedProject, setSelectedProject] = useState<ProjectInterface | null>(null);
+  const [selectedProject, setSelectedProject] =
+    useState<ProjectInterface | null>(null);
   const [showProjects, setShowProjects] = useState(true);
 
   const selectProject = (project: ProjectInterface) => {
     setSelectedProject(project);
     setShowProjects(false);
   };
-
 
   useEffect(() => {
     const token = localStorage.getItem("token") || "";
@@ -32,8 +32,8 @@ function Project() {
 
   const goBack = () => {
     setSelectedProject(null);
-    setShowProjects(true); 
-};
+    setShowProjects(true);
+  };
 
   return (
     <div>
@@ -53,10 +53,10 @@ function Project() {
         )
       ) : (
         <>
-        <button onClick={goBack}>Gå tillbaka till alla projekt</button>
-        <SelectedProject projectId={selectedProject?.projectId || ''} />
+          <button onClick={goBack}>Gå tillbaka till alla projekt</button>
+          <SelectedProject projectId={selectedProject?.projectId || ""} />
+          <InviteUser projectId={selectedProject?.projectId || ""} />
         </>
-        
       )}
     </div>
   );
