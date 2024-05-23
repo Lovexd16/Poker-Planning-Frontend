@@ -4,6 +4,8 @@ import { jwtDecode } from "jwt-decode";
 import ProjectInterface from "../../interface/ProjectInterface";
 import SelectedProject from "./SelectedProject";
 import InviteUser from "./InviteUser";
+import './Project.css';
+
 
 function Project() {
   const [projects, setProjects] = useState<ProjectInterface[]>([]);
@@ -38,19 +40,21 @@ function Project() {
   return (
     <div>
       {showProjects ? (
-        projects.length > 0 ? (
-          projects.map((project: ProjectInterface) => (
-            <div key={project.projectId}>
-              <button onClick={() => selectProject(project)}>
-                {project.projectCreatedByUser.username +
-                  "/" +
-                  project.projectName}
-              </button>
-            </div>
-          ))
-        ) : (
-          <p>Du har inga aktiva projekt.</p>
-        )
+        <div style={{ maxHeight: '30vh', overflowY: 'auto' }}>
+          {projects.length > 0 ? (
+            projects.map((project: ProjectInterface) => (
+              <div key={project.projectId}>
+                <button onClick={() => selectProject(project)}>
+                  {project.projectCreatedByUser.username +
+                    "/" +
+                    project.projectName}
+                </button>
+              </div>
+            ))
+          ) : (
+            <p>Du har inga aktiva projekt.</p>
+          )}
+        </div>
       ) : (
         <>
           <button onClick={goBack}>Gå tillbaka till alla projekt</button>

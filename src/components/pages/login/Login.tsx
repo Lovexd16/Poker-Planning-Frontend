@@ -58,7 +58,7 @@ function Login({setPage, setIsLoggedIn}: Props) {
             Lösenord<br />
             <input type ="password" required value={newLogin.password} onChange={(e) => setNewLogin({...newLogin, password: e.target.value})}></input>
           </label><br/><br/>
-          {errorMessage && <p>{errorMessage}</p>}
+          {errorMessage && <p style={{ fontSize: '20px'}}>{errorMessage}</p>}
           <button type="submit">Logga in</button>
         </form>
       </div>
