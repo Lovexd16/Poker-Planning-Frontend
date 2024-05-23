@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import EditProject from "./EditProject";
 import IsDone from "./IsDone";
-import Issue from "../issue/Issue";
+import NewIssue from "../issue/NewIssue";
+import GetIssue from "../issue/GetIssue";
 
 import ProjectInterface from "../../interface/ProjectInterface";
 import SelectedProject from "./SelectedProject";
@@ -66,7 +67,8 @@ function Project() {
           <IsDone projectId={selectedProject?.projectId || ""} />
           <EditProject projectId={selectedProject?.projectId || ""} projectName={selectedProject?.projectName || ""}
           projectDescription={selectedProject?.projectDescription || ""} />
-          <Issue projectId={selectedProject?.projectId || ""} />
+          <NewIssue projectId={selectedProject?.projectId || ""} />
+          <GetIssue projectId={selectedProject?.projectId || ""} />
         </>
       )}
     </div>

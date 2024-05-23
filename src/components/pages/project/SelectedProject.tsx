@@ -10,7 +10,7 @@ function SelectedProject({projectId}: {projectId: string}) {
             .then(res => res.json())
             .then(data => setSelectedProject(data))
             .catch(error => console.error('Error fetching project:', error));
-    }, [projectId]);
+    }, []);
 
    
     if (!selectedProject) {
