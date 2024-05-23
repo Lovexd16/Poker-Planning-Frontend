@@ -12,7 +12,7 @@ function Register({ setPage }: Props) {
   });
 
   const [errorMessage, setErrorMessage] = useState<string>("");
-
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
   const registerUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,7 +32,11 @@ function Register({ setPage }: Props) {
       })
       .then((data) => {
         console.log("Användare lades till: ", data);
-        setPage("login");
+        setErrorMessage("");
+        setSuccessMessage("Du är nu registrerad! Omdirigeras till login om 3 sek...");
+        setTimeout(() => {
+          setPage("login")
+        },3000);
       })
       .catch((error) => {
         console.error("Fel vid tillägning: ", error);
@@ -72,7 +76,8 @@ function Register({ setPage }: Props) {
         </label>
         <br />
         <br />
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <p style={{ fontSize: '20px'}}>{errorMessage}</p>}
+        {successMessage && <p style={{ fontSize: '20px'}}>{successMessage}</p>}
         <button type="submit">Registrera</button>
       </form>
     </div>
