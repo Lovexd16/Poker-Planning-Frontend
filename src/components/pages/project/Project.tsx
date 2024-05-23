@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+import EditProject from "./EditProject";
+import IsDone from "./IsDone";
 
 import ProjectInterface from "../../interface/ProjectInterface";
 import SelectedProject from "./SelectedProject";
@@ -23,7 +25,7 @@ function Project() {
     const decodedToken = jwtDecode(token);
     const loggedInUser = decodedToken.sub;
 
-    fetch(`http://localhost:8080/projects/${loggedInUser}`, {
+    fetch(`http://localhost:8080/activeprojects/${loggedInUser}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -60,6 +62,10 @@ function Project() {
           <button onClick={goBack}>Gå tillbaka till alla projekt</button>
           <SelectedProject projectId={selectedProject?.projectId || ""} />
           <InviteUser projectId={selectedProject?.projectId || ""} />
+          <IsDone projectId={selectedProject?.projectId || ""} />
+          <EditProject projectId={selectedProject?.projectId || ""} projectName={selectedProject?.projectName || ""}
+          projectDescription={selectedProject?.projectDescription || ""} />
+          
         </>
       )}
     </div>
