@@ -1,6 +1,7 @@
 import IssueInterface from '../../interface/IssueInterface';
 import React, { useEffect, useState } from 'react'
 import SelectedIssue from './SelectedIssue';
+import EstimateTime from './EstimateTime';
 
 function GetIssue({projectId}: {projectId: string}) {
 
@@ -53,6 +54,7 @@ function GetIssue({projectId}: {projectId: string}) {
             <>
               <button onClick={goBack}>Gå tillbaka till alla issues</button>
               <SelectedIssue issueId={selectedIssue?.issueId || ""} />
+              <EstimateTime issueId={selectedIssue?.issueId || ""} />
             </>
           )}
         </div>
