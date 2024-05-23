@@ -36,6 +36,7 @@ function GetIssue({projectId}: {projectId: string}) {
 
     return (
         <div>
+          <h2>Issues:</h2>
           {showIssues ? (
             <div style={{ maxHeight: '30vh', overflowY: 'auto' }}>
               {issues.length > 0 ? (
@@ -50,6 +51,7 @@ function GetIssue({projectId}: {projectId: string}) {
                 <p>Du har inga aktiva issues.</p>
               )}
             </div>
+            
           ) : (
             <>
               <button onClick={goBack}>Gå tillbaka till alla issues</button>

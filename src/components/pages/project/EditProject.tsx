@@ -47,7 +47,8 @@ function EditProject({projectId, projectName, projectDescription}: {projectId: s
 
     return (
         <>
-        <div>EditProject</div>
+        <details>
+        <summary>Ändra namn & beskrivning</summary>
         <form onSubmit={editProject}>
         <label>
             Projektnamn<br />
@@ -59,6 +60,7 @@ function EditProject({projectId, projectName, projectDescription}: {projectId: s
           </label><br/><br/>
           <button type="submit">Redigera projekt</button>
         </form>
+        </details>
         </>
     )
 }
