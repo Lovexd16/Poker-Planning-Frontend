@@ -14,7 +14,7 @@ function SelectedProject({projectId}: {projectId: string}) {
 
    
     if (!selectedProject) {
-        return <p>Fel</p>;
+        return <p>Laddar...</p>;
     }
 
     return (
