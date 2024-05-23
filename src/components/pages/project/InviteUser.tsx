@@ -30,7 +30,7 @@ function InviteUser({ projectId }: { projectId: string }) {
     })
       .then((res) => res.json())
       .then((data) => setUsers(data));
-  }, [users]);
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.toLowerCase();
