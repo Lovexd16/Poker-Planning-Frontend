@@ -47,7 +47,8 @@ const saveIssue = (e: React.FormEvent<HTMLFormElement>) => {
 
   return (
     <div>
-      <h2>Issues</h2>
+      <details>
+      <summary>Lägg till issue</summary>
       <form onSubmit={saveIssue}>
         <label>
             Issuenamn<br />
@@ -60,6 +61,7 @@ const saveIssue = (e: React.FormEvent<HTMLFormElement>) => {
           <button type="submit">Skapa issue</button>
 
         </form>
+        </details>
     </div>
   );
 }

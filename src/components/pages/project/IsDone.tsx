@@ -38,8 +38,10 @@ function IsDone({projectId}: {projectId: string}) {
 
     return (
         <>
-        <div>IsDone</div>
+        <details>
+        <summary>Markera projekt som klar</summary>
             <button onClick={markAsDone} >Markera som klar</button>
+        </details>
         </>
     )
 }

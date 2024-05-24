@@ -77,7 +77,8 @@ function InviteUser({ projectId }: { projectId: string }) {
 
   return (
     <>
-      <h2>Bjud in</h2>
+    <details>
+      <summary>Bjud in användare</summary>
       <form onSubmit={inviteUser}>
         <input
           type="text"
@@ -96,8 +97,10 @@ function InviteUser({ projectId }: { projectId: string }) {
             </button>
           ))}
         </div>
+        
       )}
       {errorMessage && <p>{errorMessage}</p>}
+      </details>
     </>
   );
 }
