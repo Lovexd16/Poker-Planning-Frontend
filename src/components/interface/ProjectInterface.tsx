@@ -3,10 +3,9 @@ interface ProjectInterface {
     projectName: string;
     projectDescription: string;
     projectCreatedByUserId: string;
+    usernameInProject: string[];
     projectDate: Date;
     isDone: boolean;
-    userIdInProject: string[];
-    issueIdInProject: string[];
     totalAgreedTime: number;
     totalActualTimeSpent: number;
 }

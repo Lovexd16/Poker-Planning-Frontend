@@ -23,8 +23,8 @@ function SelectedProject({projectId}: {projectId: string}) {
                 <h2>{selectedProject.projectName}</h2>
                 <p>{selectedProject.projectDescription}</p>
                 <p>Medlemmar:</p>
-                {selectedProject.userIdInProject.map(user => (
-                    <p key={user}>{user}</p>
+                {selectedProject.usernameInProject.map(username => (
+                    <p key={username}>{username}</p>
                 ))}
 
                 <p>{"Total estimerad tid för projekt: " + selectedProject.totalAgreedTime + "h"}</p>
