@@ -14,12 +14,12 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
     const savedState = localStorage.getItem("isLoggedIn");
-      return savedState ? JSON.parse(savedState) : false;
-    });
-  
-    useEffect(() => {
-      localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
-    }, [isLoggedIn]);
+    return savedState ? JSON.parse(savedState) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
+  }, [isLoggedIn]);
 
   useEffect(() => {
     let pageUrl = page;
@@ -43,16 +43,20 @@ function App() {
     <>
       <h1>Poker Planning</h1>
 
-      <Navigation setPage={setPage} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+      <Navigation
+        setPage={setPage}
+        setIsLoggedIn={setIsLoggedIn}
+        isLoggedIn={isLoggedIn}
+      />
       {
         {
           login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,
           register: <Register setPage={setPage} />,
           project: <Project />,
-          issue: <Issue />,
+          issue: <Issue projectId={""} />,
           issueDetails: <IssueDetails />,
           statistics: <Statistics />,
-          newproject: <NewProject setPage={setPage}/>
+          newproject: <NewProject setPage={setPage} />,
         }[page]
       }
     </>
