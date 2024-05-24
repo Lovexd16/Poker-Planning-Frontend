@@ -23,11 +23,14 @@ function InviteUser({ projectId }: { projectId: string }) {
     const decodedToken = jwtDecode(token);
     const loggedInUser = decodedToken.sub;
 
-    fetch(`http://localhost:8080/user/getallusersexceptloggedin/${loggedInUser}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    fetch(
+      `http://localhost:8080/user/getallusersexceptloggedin/${loggedInUser}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);
@@ -62,7 +65,11 @@ function InviteUser({ projectId }: { projectId: string }) {
       }
     )
       .then((response) => {
+        console.log(response);
+
         if (!response.ok) {
+          console.log(selectedUser);
+
           throw new Error("Kunde inte bjuda in användaren!");
         }
         setInvitedUser({
@@ -77,29 +84,28 @@ function InviteUser({ projectId }: { projectId: string }) {
 
   return (
     <>
-    <details>
-      <summary>Bjud in användare</summary>
-      <form onSubmit={inviteUser}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Sök användare..."
-          required
-        />
-        <button type="submit">Bjud in</button>
-      </form>
-      {inputValue !== "" && (
-        <div>
-          {filteredUsers.map((user) => (
-            <button onClick={() => selectUser(user)} key={user.userId}>
-              {user.username}
-            </button>
-          ))}
-        </div>
-        
-      )}
-      {errorMessage && <p>{errorMessage}</p>}
+      <details>
+        <summary>Bjud in användare</summary>
+        <form onSubmit={inviteUser}>
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            placeholder="Sök användare..."
+            required
+          />
+          <button type="submit">Bjud in</button>
+        </form>
+        {inputValue !== "" && (
+          <div>
+            {filteredUsers.map((user) => (
+              <button onClick={() => selectUser(user)} key={user.userId}>
+                {user.username}
+              </button>
+            ))}
+          </div>
+        )}
+        {errorMessage && <p>{errorMessage}</p>}
       </details>
     </>
   );
