@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import IssueInterface from "../../interface/IssueInterface";
+import IssueMessage from "./IssueMessage";
 
 function SelectedIssue({issueId}: {issueId: string}) {
 
@@ -26,6 +27,7 @@ function SelectedIssue({issueId}: {issueId: string}) {
                 <p>{"Överenskommen tid för issue: " + selectedIssue.agreedTime + "h"}</p>
                 <p>{"Tid spenderad för issue: " + selectedIssue.actualTimeSpent + "h"}</p>
                 <p>{"Skapat av: " + selectedIssue.issueCreatedByUser.username + "/" + selectedIssue.issueDate.toString()}</p>
+                <IssueMessage issueId={selectedIssue?.issueId || ""} />
             </div>
         </>
     );
