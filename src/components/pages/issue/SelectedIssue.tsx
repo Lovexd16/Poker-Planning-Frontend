@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import IssueInterface from "../../interface/IssueInterface";
 import IssueMessage from "./IssueMessage";
 import IssueIsDone from "./IssueIsDone";
+import AddAgreedTime from "./AddAgreedTime";
 
 function SelectedIssue({ issueId }: { issueId: string }) {
   const [selectedIssue, setSelectedIssue] = useState<IssueInterface | null>(
@@ -35,6 +36,7 @@ function SelectedIssue({ issueId }: { issueId: string }) {
                 <p>{"Skapat av: " + selectedIssue.issueCreatedByUserId + "/" + selectedIssue.issueDate.toString()}</p>
                 <IssueIsDone issueId={selectedIssue?.issueId || ""} />
                 <IssueMessage issueId={selectedIssue?.issueId || ""} />
+                <AddAgreedTime issueId={selectedIssue?.issueId || ""} />
             </div>
         </>
     );

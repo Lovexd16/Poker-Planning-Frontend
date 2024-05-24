@@ -46,7 +46,7 @@ function EstimateTime({issueId}: {issueId: string}) {
 
     return (
         <>
-            <div>EstimateTime</div>
+            <div>Estimera tiden för issue</div>
             <form onSubmit={estimateTime}>
                 <select
                     value={newEstimation.estimatedTime}
