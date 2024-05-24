@@ -49,9 +49,7 @@ function Project() {
             projects.map((project: ProjectInterface) => (
               <div key={project.projectId}>
                 <button onClick={() => selectProject(project)}>
-                  {project.projectCreatedByUser.username +
-                    "/" +
-                    project.projectName}
+                  <p>{project.projectName}</p>
                 </button>
               </div>
             ))

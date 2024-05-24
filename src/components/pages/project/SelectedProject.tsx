@@ -23,13 +23,13 @@ function SelectedProject({projectId}: {projectId: string}) {
                 <h2>{selectedProject.projectName}</h2>
                 <p>{selectedProject.projectDescription}</p>
                 <p>Medlemmar:</p>
-                {selectedProject.usersInProject.map(user => (
-                    <p key={user.userId}>{user.username}</p>
+                {selectedProject.userIdInProject.map(user => (
+                    <p key={user}>{user}</p>
                 ))}
 
                 <p>{"Total estimerad tid för projekt: " + selectedProject.totalAgreedTime + "h"}</p>
                 <p>{"Total spenderad tid för projekt: " + selectedProject.totalActualTimeSpent + "h"}</p>
-                <p>{"Skapat av: " + selectedProject.projectCreatedByUser.username + "/" + selectedProject.projectDate.toString()}</p>
+                <p>{"Skapat av: " + selectedProject.projectCreatedByUserId + "/" + selectedProject.projectDate.toString()}</p>
             </div>
         </>
     );

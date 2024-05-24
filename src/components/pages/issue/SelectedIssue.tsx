@@ -19,29 +19,26 @@ function SelectedIssue({ issueId }: { issueId: string }) {
     return <p>Laddar...</p>;
   }
 
-  return (
-    <>
-      <div key={selectedIssue.issueId}>
-        <h2>{selectedIssue.issueName}</h2>
-        <p>{selectedIssue.issueDescription}</p>
-        <p>{"Estimerad tid av medlemmar: " + selectedIssue.estimatedTime}</p>
-        <p>
-          {"Överenskommen tid för issue: " + selectedIssue.agreedTime + "h"}
-        </p>
-        <p>
-          {"Tid spenderad för issue: " + selectedIssue.actualTimeSpent + "h"}
-        </p>
-        <p>
-          {"Skapat av: " +
-            selectedIssue.issueCreatedByUser.username +
-            "/" +
-            selectedIssue.issueDate.toString()}
-        </p>
-        <IssueIsDone issueId={selectedIssue?.issueId || ""} />
-        <IssueMessage issueId={selectedIssue?.issueId || ""} />
-      </div>
-    </>
-  );
+   
+    if (!selectedIssue) {
+        return <p>Laddar...</p>;
+    }
+
+    return (
+        <>
+            <div key={selectedIssue.issueId}>
+                <h2>{selectedIssue.issueName}</h2>
+                <p>{selectedIssue.issueDescription}</p>
+                <p>{"Estimerad tid av medlemmar: " + selectedIssue.estimatedTime}</p>
+                <p>{"Överenskommen tid för issue: " + selectedIssue.agreedTime + "h"}</p>
+                <p>{"Tid spenderad för issue: " + selectedIssue.actualTimeSpent + "h"}</p>
+                <p>{"Skapat av: " + selectedIssue.issueCreatedByUserId + "/" + selectedIssue.issueDate.toString()}</p>
+                <IssueIsDone issueId={selectedIssue?.issueId || ""} />
+                <IssueMessage issueId={selectedIssue?.issueId || ""} />
+            </div>
+        </>
+    );
+
 }
 
 export default SelectedIssue;
