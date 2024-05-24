@@ -26,7 +26,7 @@ function SelectedIssue({issueId}: {issueId: string}) {
                 <p>{"Estimerad tid av medlemmar: " + selectedIssue.estimatedTime}</p>
                 <p>{"Överenskommen tid för issue: " + selectedIssue.agreedTime + "h"}</p>
                 <p>{"Tid spenderad för issue: " + selectedIssue.actualTimeSpent + "h"}</p>
-                <p>{"Skapat av: " + selectedIssue.issueCreatedByUser.username + "/" + selectedIssue.issueDate.toString()}</p>
+                <p>{"Skapat av: " + selectedIssue.issueCreatedByUserId + "/" + selectedIssue.issueDate.toString()}</p>
                 <IssueMessage issueId={selectedIssue?.issueId || ""} />
             </div>
         </>
