@@ -23,7 +23,7 @@ function InviteUser({ projectId }: { projectId: string }) {
     const decodedToken = jwtDecode(token);
     const loggedInUser = decodedToken.sub;
 
-    fetch(`http://localhost:8080/user/${loggedInUser}/invite`, {
+    fetch(`http://localhost:8080/user/getallusersexceptloggedin/${loggedInUser}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -50,7 +50,7 @@ function InviteUser({ projectId }: { projectId: string }) {
     e.preventDefault();
 
     fetch(
-      `http://localhost:8080/addUser/${projectId}/${selectedUser?.userId}`,
+      `http://localhost:8080/project/adduser/${projectId}/${selectedUser?.userId}`,
       {
         method: "POST",
         headers: {

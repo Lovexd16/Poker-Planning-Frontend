@@ -36,6 +36,7 @@ function NewProject({setPage}: Props) {
                 throw new Error("Kunde inte spara projekt!");
             }
             setPage("project");
+            console.log(loggedInUser);
             setNewProject({
                 projectName: "",
                 projectDescription: "",

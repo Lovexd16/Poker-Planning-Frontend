@@ -25,7 +25,7 @@ function GetIssue({projectId}: {projectId: string}) {
 
         const token = localStorage.getItem('token') || '';
 
-        fetch(`http://localhost:8080/projectissues/${projectId}`, {
+        fetch(`http://localhost:8080/issues/${projectId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
