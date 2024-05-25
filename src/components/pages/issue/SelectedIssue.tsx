@@ -14,7 +14,7 @@ function SelectedIssue({ issueId }: { issueId: string }) {
       .then((res) => res.json())
       .then((data) => setSelectedIssue(data))
       .catch((error) => console.error("Error fetching project:", error));
-  }, []);
+  }, [selectedIssue]);
 
   if (!selectedIssue) {
     return <p>Laddar...</p>;

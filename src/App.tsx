@@ -41,13 +41,13 @@ function App() {
 
   return (
     <>
-      <h1>Poker Planning</h1>
-
       <Navigation
         setPage={setPage}
         setIsLoggedIn={setIsLoggedIn}
         isLoggedIn={isLoggedIn}
+        currentPage={page}
       />
+      
       {
         {
           login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,

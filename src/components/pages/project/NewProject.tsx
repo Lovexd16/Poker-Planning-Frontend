@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import NewProjectInterface from "../../interface/NewProjectInterface";
+import './Project.css';
 
 interface Props {
     setPage: (page: string) => void;
@@ -50,17 +51,17 @@ function NewProject({setPage}: Props) {
   
     return (
       <div>
-        <h2>Nytt Projekt:</h2>
+        <h3>Nytt Projekt</h3>
         <form onSubmit={saveProject}>
         <label>
             Projektnamn<br />
-            <input type ="text" required size={30} value={newProject.projectName} onChange={(e) => setNewProject({...newProject, projectName: e.target.value})}></input>
+            <input className="inputForm" type ="text" required size={30} value={newProject.projectName} onChange={(e) => setNewProject({...newProject, projectName: e.target.value})}></input>
           </label><br/><br/>
           <label>
             Projektbeskrivning<br />
-            <textarea required style={{width: '100%', height: '50px'}}value={newProject.projectDescription} onChange={(e) => setNewProject({...newProject, projectDescription: e.target.value})}></textarea>
+            <textarea className="inputForm textarea" maxLength={124} required style={{width: '212px', height: '70px'}}value={newProject.projectDescription} onChange={(e) => setNewProject({...newProject, projectDescription: e.target.value})}></textarea>
           </label><br/><br/>
-          <button type="submit">Skapa projekt</button>
+          <button className="button" type="submit">Skapa projekt</button>
 
         </form>
       </div>
@@ -68,4 +69,3 @@ function NewProject({setPage}: Props) {
   }
   
   export default NewProject;
-  

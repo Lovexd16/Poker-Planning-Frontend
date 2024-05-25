@@ -20,23 +20,26 @@ function IssueMessage({issueId}: {issueId: string}) {
         
 
     const sendMessage = () => {
-        const token = localStorage.getItem('token') || '';
-        const decodedToken = jwtDecode(token);
-        const loggedInUser = decodedToken.sub;
+      const token = localStorage.getItem('token') || '';
+      const decodedToken = jwtDecode(token);
+      const loggedInUser = decodedToken.sub;
 
-        fetch(`http://localhost:8080/issue/${issueId}/${loggedInUser}/conversation`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify(newMessage)
-        })
-        .then(res => res.text())
-        .then(data => setIssueMessages([...issueMessages, data]))
-        .catch(error => console.error('Error sending message:', error));
-        setNewMessage("");
-    }
+      const timestamp = new Date().toLocaleTimeString('sv-SE');
+
+      fetch(`http://localhost:8080/issue/${issueId}/${loggedInUser}/conversation`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify(newMessage +  " - skickat: " + timestamp)
+
+      })
+      .then(res => res.text())
+      .then(data => setIssueMessages([...issueMessages, data]))
+      .catch(error => console.error('Error sending message:', error));
+      setNewMessage("");
+  }
   
   return (
     <details>
