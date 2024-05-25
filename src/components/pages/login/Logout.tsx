@@ -7,7 +7,7 @@ function Logout({ setIsLoggedIn, setPage }: { setIsLoggedIn: (loggedIn: boolean)
     }
 
     return (
-      <button onClick={handleLogout}>Logga ut</button>
+      <button className="button" onClick={handleLogout}>Logga ut</button>
     );
 }
 

@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
-import EditProject from "./EditProject";
-import IsDone from "./IsDone";
-import NewIssue from "../issue/NewIssue";
-import GetIssue from "../issue/GetIssue";
-
 import ProjectInterface from "../../interface/ProjectInterface";
 import SelectedProject from "./SelectedProject";
-import InviteUser from "./InviteUser";
 import './Project.css';
 
 
@@ -40,36 +34,35 @@ function Project() {
     setSelectedProject(null);
     setShowProjects(true);
   };
-
+  
   return (
-    <div>
+    <>
       {showProjects ? (
-        <div style={{ maxHeight: '30vh', overflowY: 'auto' }}>
-          {projects.length > 0 ? (
-            projects.map((project: ProjectInterface) => (
-              <div key={project.projectId}>
-                <button onClick={() => selectProject(project)}>
-                  <p>{project.projectName}</p>
-                </button>
-              </div>
-            ))
-          ) : (
-            <p>Du har inga aktiva projekt.</p>
-          )}
+        <div className="container">
+          <details className="details-container" open={true}>
+            <summary>Dina aktiva projekt</summary>
+            <div style={{ maxHeight: '30vh', overflowY: 'auto' }}>
+              {projects.length > 0 ? (
+                projects.map((project: ProjectInterface) => (
+                  <div key={project.projectId}>
+                    <button className="button" onClick={() => selectProject(project)}>
+                      <p>{project.projectCreatedByUserId + "/" + project.projectName}</p>
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <p>Du har inga aktiva projekt.</p>
+              )}
+            </div>
+          </details>
         </div>
       ) : (
         <>
-          <button onClick={goBack}>Gå tillbaka till alla projekt</button>
-          <SelectedProject projectId={selectedProject?.projectId || ""} />
-          <InviteUser projectId={selectedProject?.projectId || ""} />
-          <IsDone projectId={selectedProject?.projectId || ""} />
-          <EditProject projectId={selectedProject?.projectId || ""} projectName={selectedProject?.projectName || ""}
-          projectDescription={selectedProject?.projectDescription || ""} />
-          <NewIssue projectId={selectedProject?.projectId || ""} />
-          <GetIssue projectId={selectedProject?.projectId || ""} />
+          <button className="button" onClick={goBack}>Gå tillbaka till alla projekt</button>
+          <SelectedProject projectId={selectedProject?.projectId || ""} selectedProject={selectedProject || null} />
         </>
       )}
-    </div>
+    </>
   );
 }
 

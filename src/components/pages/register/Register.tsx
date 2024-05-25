@@ -47,11 +47,11 @@ function Register({ setPage }: Props) {
   return (
     <div className="register">
       <form onSubmit={registerUser}>
-        <h2>Registrera</h2>
+        <h3>Registrera</h3>
         <label>
           Användarnamn
           <br />
-          <input
+          <input className="inputForm"
             type="text"
             required
             value={newUser.username}
@@ -65,7 +65,7 @@ function Register({ setPage }: Props) {
         <label>
           Lösenord
           <br />
-          <input
+          <input className="inputForm"
             type="password"
             required
             value={newUser.password}
@@ -78,7 +78,7 @@ function Register({ setPage }: Props) {
         <br />
         {errorMessage && <p style={{ fontSize: '20px'}}>{errorMessage}</p>}
         {successMessage && <p style={{ fontSize: '20px'}}>{successMessage}</p>}
-        <button type="submit">Registrera</button>
+        <button className="button" type="submit">Registrera ny användare</button>
       </form>
     </div>
   );

@@ -1,35 +1,47 @@
 import { useEffect, useState } from "react";
 import ProjectInterface from "../../interface/ProjectInterface";
+import AboutProject from "./AboutProject";
+import GetIssue from "../issue/GetIssue";
+import InviteUser from "./InviteUser";
+import IsDone from "./IsDone";
+import EditProject from "./EditProject";
+import NewIssue from "../issue/NewIssue";
 
-function SelectedProject({projectId}: {projectId: string}) {
+function SelectedProject({ projectId, selectedProject }: { projectId: string, selectedProject: ProjectInterface | null }) {
+    const [selectedComponent, setSelectedComponent] = useState<"issues" | "information" | "settings">("issues");
 
-    const [selectedProject, setSelectedProject] = useState<ProjectInterface | null>(null);
-
-    useEffect(() => {
-        fetch(`http://localhost:8080/project/${projectId}`)
-            .then(res => res.json())
-            .then(data => setSelectedProject(data))
-            .catch(error => console.error('Error fetching project:', error));
-    }, []);
-
-   
-    if (!selectedProject) {
-        return <p>Laddar...</p>;
+    function handleMenuClick(menu: "issues" | "information" | "settings") {
+        setSelectedComponent(menu);
     }
 
     return (
         <>
-            <div key={selectedProject.projectId}>
-                <h2>{selectedProject.projectName}</h2>
-                <p>{selectedProject.projectDescription}</p>
-                <p>Medlemmar:</p>
-                {selectedProject.usernameInProject.map(username => (
-                    <p key={username}>{username}</p>
-                ))}
-
-                <p>{"Total estimerad tid för projekt: " + selectedProject.totalAgreedTime + "h"}</p>
-                <p>{"Total spenderad tid för projekt: " + selectedProject.totalActualTimeSpent + "h"}</p>
-                <p>{"Skapat av: " + selectedProject.projectCreatedByUserId + "/" + selectedProject.projectDate.toString()}</p>
+            <div className="selectedprojectcontainer">
+                <header >
+                    <button className={`button ${selectedComponent === "issues" ? "active" : ""}`} onClick={() => handleMenuClick("issues")}>Issues</button>
+                    <button className={`button ${selectedComponent === "information" ? "active" : ""}`} onClick={() => handleMenuClick("information")}>Information</button>
+                    <button className={`button ${selectedComponent === "settings" ? "active" : ""}`} onClick={() => handleMenuClick("settings")}>Inställningar</button>
+                </header>
+                {selectedComponent === "issues" ? (
+                    <>
+                    <NewIssue projectId={projectId} />
+                    <GetIssue projectId={projectId} />
+                    </>
+                    
+                    
+                ) : selectedComponent === "information" ? (
+                    <AboutProject projectId={projectId} />
+                ) : (
+                    <>
+                        <InviteUser projectId={projectId} />
+                        <IsDone projectId={projectId} />
+                        <EditProject 
+                            projectId={projectId} 
+                            projectName={selectedProject?.projectName || ""}
+                            projectDescription={selectedProject?.projectDescription || ""} 
+                        />
+                    </>
+                )}
             </div>
         </>
     );

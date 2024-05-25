@@ -1,5 +1,6 @@
 import { useState } from "react";
 import UserDetailsInterface from "../../interface/UserDetails";
+import './Login.css'
 
 interface Props {
   setPage: (page: string) => void;
@@ -47,19 +48,19 @@ function Login({setPage, setIsLoggedIn}: Props) {
 };
 
   return (
-      <div className="login">
+      <div>
         <form onSubmit={loginUser}>
-          <h2>Logga in</h2>
+          <h3>Logga in</h3>
           <label>
             Användarnamn<br />
-            <input type ="text" required value={newLogin.username} onChange={(e) => setNewLogin({...newLogin, username: e.target.value})}></input>
+            <input className="inputForm" type ="text" required value={newLogin.username} onChange={(e) => setNewLogin({...newLogin, username: e.target.value})}></input>
           </label><br/><br/>
           <label>
             Lösenord<br />
-            <input type ="password" required value={newLogin.password} onChange={(e) => setNewLogin({...newLogin, password: e.target.value})}></input>
+            <input className="inputForm" type ="password" required value={newLogin.password} onChange={(e) => setNewLogin({...newLogin, password: e.target.value})}></input>
           </label><br/><br/>
           {errorMessage && <p style={{ fontSize: '20px'}}>{errorMessage}</p>}
-          <button type="submit">Logga in</button>
+          <button className="button" type="submit">Logga in</button>
         </form>
       </div>
   );
