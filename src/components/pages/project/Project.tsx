@@ -20,8 +20,7 @@ function Project({ setPage, setIsProjectSelected }: Props) {
   const selectProject = (project: ProjectInterface) => {
     setSelectedProject(project);
     setShowProjects(false);
-    setIsProjectSelected(true); // <-- Moved setIsProjectSelected here
-    setPage('selectedproject');
+    setIsProjectSelected(true); 
   };
 
   useEffect(() => {

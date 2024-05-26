@@ -41,9 +41,9 @@ function Statistics() {
   return (
     <>
       {showProjects ? (
-        <div className="container">
-          <details className="details-container" open={true}>
-            <summary>Inaktiva projekt</summary>
+        <div>
+          <details  open={true}>
+            <summary>Dina avklarade projekt</summary>
             <div style={{ maxHeight: "30vh", overflowY: "auto" }}>
               {inactiveProjects.length > 0 ? (
                 inactiveProjects.map((project: ProjectInterface) => (
