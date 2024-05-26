@@ -7,6 +7,8 @@ import IsDone from "./IsDone";
 import EditProject from "./EditProject";
 import NewIssue from "../issue/NewIssue";
 import Project from "./Project";
+import ProjectStatistics from "./ProjectStatistics";
+import DeleteProject from "./DeleteProject";
 
 
 
@@ -18,10 +20,10 @@ function SelectedProject({
   selectedProject: ProjectInterface | null;
 }) {
   const [selectedComponent, setSelectedComponent] = useState<
-    "issues" | "information" | "settings"
+    "issues" | "information" | "statistics" | "settings"
   >("issues");
 
-  function handleMenuClick(menu: "issues" | "information" | "settings") {
+  function handleMenuClick(menu: "issues" | "information" | "statistics" | "settings") {
     setSelectedComponent(menu);
   }
 
@@ -35,6 +37,7 @@ function SelectedProject({
                 <header >
                     <button className={`button ${selectedComponent === "issues" ? "active" : ""}`} onClick={() => handleMenuClick("issues")}>Issues</button>
                     <button className={`button ${selectedComponent === "information" ? "active" : ""}`} onClick={() => handleMenuClick("information")}>Information</button>
+                    <button className={`button ${selectedComponent === "statistics" ? "active" : ""}`} onClick={() => handleMenuClick("statistics")}>Statistik</button>
                     <button className={`button ${selectedComponent === "settings" ? "active" : ""}`} onClick={() => handleMenuClick("settings")}>Inställningar</button>
                 </header>
                 {selectedComponent === "issues" ? (
@@ -46,6 +49,9 @@ function SelectedProject({
                     
                 ) : selectedComponent === "information" ? (
                     <AboutProject projectId={projectId} />
+
+                ) : selectedComponent === "statistics" ? (
+                    < ProjectStatistics projectId={projectId} />
                 ) : (
                     <>
                         <InviteUser projectId={projectId} />
@@ -54,7 +60,9 @@ function SelectedProject({
                             projectId={projectId} 
                             projectName={selectedProject?.projectName || ""}
                             projectDescription={selectedProject?.projectDescription || ""} 
+                            
                         />
+                        <DeleteProject projectId={projectId} />
                     </>
                 )}
             </div>

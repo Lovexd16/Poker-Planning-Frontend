@@ -1,13 +1,15 @@
 import { useState } from "react";
 import AboutProject from "../project/AboutProject";
 import GetStatisticsIssue from "./GetStatisticsIssue";
+import ProjectStatistics from "../project/ProjectStatistics";
+import DeleteProject from "../project/DeleteProject";
 
 function SelectedStatisticsProject({ projectId }: { projectId: string }) {
   const [selectedComponent, setSelectedComponent] = useState<
-    "issues" | "information" | "settings"
+    "issues" | "information" | "statistics" | "settings"
   >("issues");
 
-  function handleMenuClick(menu: "issues" | "information" | "settings") {
+  function handleMenuClick(menu: "issues" | "information" | "statistics" | "settings") {
     setSelectedComponent(menu);
   }
 
@@ -33,6 +35,14 @@ function SelectedStatisticsProject({ projectId }: { projectId: string }) {
           </button>
           <button
             className={`button ${
+              selectedComponent === "statistics" ? "active" : ""
+            }`}
+            onClick={() => handleMenuClick("statistics")}
+          >
+            Statistik
+          </button>
+          <button
+            className={`button ${
               selectedComponent === "settings" ? "active" : ""
             }`}
             onClick={() => handleMenuClick("settings")}
@@ -46,11 +56,18 @@ function SelectedStatisticsProject({ projectId }: { projectId: string }) {
           </>
         ) : selectedComponent === "information" ? (
           <AboutProject projectId={projectId} />
-        ) : (
-          <></>
-        )}
-      </div>
-    </>
+
+        ) : selectedComponent === "statistics" ? (
+          <ProjectStatistics projectId={projectId} />
+
+      ) : (
+        <>
+            <DeleteProject projectId={projectId} 
+            />
+        </>
+    )}
+</div>
+</>
   );
 }
 
