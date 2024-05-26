@@ -8,6 +8,7 @@ import Register from "./components/pages/register/Register";
 import Statistics from "./components/pages/statistics/Statistics";
 import Navigation from "./components/navigation/Navigation";
 import NewProject from "./components/pages/project/NewProject";
+import SelectedProject from "./components/pages/project/SelectedProject";
 
 function App() {
   const [page, setPage] = useState<string>("");
@@ -17,6 +18,8 @@ function App() {
     return savedState ? JSON.parse(savedState) : false;
   });
 
+  const [isProjectSelected, setIsProjectSelected] = useState<boolean>(false);
+  
   useEffect(() => {
     localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
@@ -41,22 +44,28 @@ function App() {
 
   return (
     <>
+
       <Navigation
         setPage={setPage}
         setIsLoggedIn={setIsLoggedIn}
         isLoggedIn={isLoggedIn}
         currentPage={page}
       />
+
       
+{isLoggedIn &&  (
+        <Project setPage={setPage} setIsProjectSelected={setIsProjectSelected} />
+      )}
+  
       {
         {
           login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,
           register: <Register setPage={setPage} />,
-          project: <Project />,
           issue: <Issue projectId={""} />,
           issueDetails: <IssueDetails />,
           statistics: <Statistics />,
           newproject: <NewProject setPage={setPage} />,
+          selectedproject: <SelectedProject projectId={""} selectedProject={null} />
         }[page]
       }
     </>

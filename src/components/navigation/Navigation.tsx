@@ -20,12 +20,7 @@ function Navigation({ setPage, isLoggedIn, setIsLoggedIn, currentPage }: Props) 
           >
             Skapa nytt projekt
           </button>
-          <button
-            className={`button ${currentPage === "project" ? "active" : ""}`}
-            onClick={() => setPage("project")}
-          >
-            Projekt
-          </button>
+      
           <button
             className={`button ${currentPage === "statistics" ? "active" : ""}`}
             onClick={() => setPage("statistics")}
