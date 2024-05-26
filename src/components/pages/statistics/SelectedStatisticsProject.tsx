@@ -1,19 +1,8 @@
 import { useState } from "react";
-import ProjectInterface from "../../interface/ProjectInterface";
-import AboutProject from "./AboutProject";
-import GetIssue from "../issue/GetIssue";
-import InviteUser from "./InviteUser";
-import IsDone from "./IsDone";
-import EditProject from "./EditProject";
-import NewIssue from "../issue/NewIssue";
+import AboutProject from "../project/AboutProject";
+import GetStatisticsIssue from "./GetStatisticsIssue";
 
-function SelectedProject({
-  projectId,
-  selectedProject,
-}: {
-  projectId: string;
-  selectedProject: ProjectInterface | null;
-}) {
+function SelectedStatisticsProject({ projectId }: { projectId: string }) {
   const [selectedComponent, setSelectedComponent] = useState<
     "issues" | "information" | "settings"
   >("issues");
@@ -53,25 +42,16 @@ function SelectedProject({
         </header>
         {selectedComponent === "issues" ? (
           <>
-            <NewIssue projectId={projectId} />
-            <GetIssue projectId={projectId} />
+            <GetStatisticsIssue projectId={projectId} />
           </>
         ) : selectedComponent === "information" ? (
           <AboutProject projectId={projectId} />
         ) : (
-          <>
-            <InviteUser projectId={projectId} />
-            <IsDone projectId={projectId} />
-            <EditProject
-              projectId={projectId}
-              projectName={selectedProject?.projectName || ""}
-              projectDescription={selectedProject?.projectDescription || ""}
-            />
-          </>
+          <></>
         )}
       </div>
     </>
   );
 }
 
-export default SelectedProject;
+export default SelectedStatisticsProject;
