@@ -6,12 +6,20 @@ import InviteUser from "./InviteUser";
 import IsDone from "./IsDone";
 import EditProject from "./EditProject";
 import NewIssue from "../issue/NewIssue";
+import Project from "./Project";
+
+
 
 function SelectedProject({ projectId, selectedProject }: { projectId: string, selectedProject: ProjectInterface | null }) {
     const [selectedComponent, setSelectedComponent] = useState<"issues" | "information" | "settings">("issues");
 
     function handleMenuClick(menu: "issues" | "information" | "settings") {
         setSelectedComponent(menu);
+    }
+
+
+    if (!selectedProject) {
+        return null; 
     }
 
     return (
