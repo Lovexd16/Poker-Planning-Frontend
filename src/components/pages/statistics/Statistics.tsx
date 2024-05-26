@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
-
 import ProjectInterface from "../../interface/ProjectInterface";
+import SelectedStatisticsProject from "./SelectedStatisticsProject";
 
 function Statistics() {
   const [inactiveProjects, setInactiveProjects] = useState<ProjectInterface[]>(
     []
   );
+  const [selectedProject, setSelectedProject] =
+    useState<ProjectInterface | null>(null);
+  const [showProjects, setShowProjects] = useState(true);
+
+  const selectProject = (project: ProjectInterface) => {
+    setSelectedProject(project);
+    setShowProjects(false);
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token") || "";
@@ -19,27 +27,56 @@ function Statistics() {
       },
     })
       .then((res) => res.json())
-      .then((data) => {
-        setInactiveProjects(data);
-      })
+      .then((data) => setInactiveProjects(data))
       .catch((error) => {
         console.error("Error fetching inactive projects:", error);
       });
   }, []);
 
+  const goBack = () => {
+    setSelectedProject(null);
+    setShowProjects(true);
+  };
+
   return (
-    <div>
-      <h2>Inactive Projects</h2>
-      {inactiveProjects.length > 0 ? (
-        <ul>
-          {inactiveProjects.map((project: ProjectInterface) => (
-            <li key={project.projectId}>{project.projectName}</li>
-          ))}
-        </ul>
+    <>
+      {showProjects ? (
+        <div className="container">
+          <details className="details-container" open={true}>
+            <summary>Inaktiva projekt</summary>
+            <div style={{ maxHeight: "30vh", overflowY: "auto" }}>
+              {inactiveProjects.length > 0 ? (
+                inactiveProjects.map((project: ProjectInterface) => (
+                  <div key={project.projectId}>
+                    <button
+                      className="button"
+                      onClick={() => selectProject(project)}
+                    >
+                      <p>
+                        {project.projectCreatedByUserId +
+                          "/" +
+                          project.projectName}
+                      </p>
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <p>Du har inga inaktiva projekt.</p>
+              )}
+            </div>
+          </details>
+        </div>
       ) : (
-        <p>You have no inactive projects.</p>
+        <>
+          <button className="button" onClick={goBack}>
+            Gå tillbaka till alla projekt
+          </button>
+          <SelectedStatisticsProject
+            projectId={selectedProject?.projectId || ""}
+          />
+        </>
       )}
-    </div>
+    </>
   );
 }
 

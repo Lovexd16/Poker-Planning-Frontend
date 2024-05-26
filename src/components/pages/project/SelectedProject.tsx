@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ProjectInterface from "../../interface/ProjectInterface";
 import AboutProject from "./AboutProject";
 import GetIssue from "../issue/GetIssue";
@@ -10,13 +10,20 @@ import Project from "./Project";
 
 
 
-function SelectedProject({ projectId, selectedProject }: { projectId: string, selectedProject: ProjectInterface | null }) {
-    const [selectedComponent, setSelectedComponent] = useState<"issues" | "information" | "settings">("issues");
+function SelectedProject({
+  projectId,
+  selectedProject,
+}: {
+  projectId: string;
+  selectedProject: ProjectInterface | null;
+}) {
+  const [selectedComponent, setSelectedComponent] = useState<
+    "issues" | "information" | "settings"
+  >("issues");
 
-    function handleMenuClick(menu: "issues" | "information" | "settings") {
-        setSelectedComponent(menu);
-    }
-
+  function handleMenuClick(menu: "issues" | "information" | "settings") {
+    setSelectedComponent(menu);
+  }
 
     if (!selectedProject) {
         return null; 
