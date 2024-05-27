@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import IssueInterface from "../../interface/IssueInterface";
 import IssueMessage from "../issue/IssueMessage";
+import AddActualTimeSpent from "../issue/AddActualTime";
 
 function SelectedStatisticsIssue({ issueId }: { issueId: string }) {
   const [selectedStatisticsIssue, setSelectedStatisticsIssue] =
     useState<IssueInterface | null>(null);
+
 
   useEffect(() => {
     fetch(`http://localhost:8080/issue/${issueId}`)
@@ -21,34 +23,72 @@ function SelectedStatisticsIssue({ issueId }: { issueId: string }) {
     return <p>Laddar...</p>;
   }
 
+  const differens =
+  selectedStatisticsIssue.agreedTime - selectedStatisticsIssue.actualTimeSpent;
+const differensClass = differens < 0 ? "red" : "green";
+
   return (
     <>
       <div key={selectedStatisticsIssue.issueId}>
-        <h2>{selectedStatisticsIssue.issueName}</h2>
-        <p>{selectedStatisticsIssue.issueDescription}</p>
+        <h3>
+          <u>Namn på issue: </u>
+        </h3>
+        <h3>{selectedStatisticsIssue.issueName}</h3>
         <p>
-          {"Estimerad tid av medlemmar: " +
-            selectedStatisticsIssue.estimatedTime}
+          <strong>
+            <u>Beskrivning av issue: </u>
+          </strong>{" "}
+          <br />
+          {selectedStatisticsIssue.issueDescription}
         </p>
         <p>
-          {"Överenskommen tid för issue: " +
-            selectedStatisticsIssue.agreedTime +
-            "h"}
-        </p>
-        <p>
-          {"Tid spenderad på issue: " +
-            selectedStatisticsIssue.actualTimeSpent +
-            "h"}
-        </p>
-        <p>
-          {"Skapat av: " +
-            selectedStatisticsIssue.issueCreatedByUserId +
+          <strong>
+            <u>Issue skapat av: </u>
+          </strong>{" "}
+          <br />
+          {selectedStatisticsIssue.issueCreatedByUserId +
             "/" +
             selectedStatisticsIssue.issueDate.toString()}
         </p>
-
+        <p>
+          <strong>
+            <u>{"Estimerad tid av medlemmar: "}</u>
+          </strong>{" "}
+          <br />
+          {selectedStatisticsIssue.estimatedTime && selectedStatisticsIssue.estimatedTime.length > 0
+            ? selectedStatisticsIssue.estimatedTime.map((estimate, index) => (
+                <span key={index}>
+                  {index > 0 && <br />} {estimate}
+                </span>
+              ))
+            : "Inga estimeringar gjordes"}
+        </p>
+        <p>
+          <strong>
+            <u>{"Överenskommen tid för issue: "}</u>
+          </strong>{" "}
+          <br />
+          {selectedStatisticsIssue.agreedTime === 0
+            ? "Ingen överenskommen tid bestämdes"
+            : selectedStatisticsIssue.agreedTime + "h"}
+        </p>
+        <p>
+          <strong>
+            <u>{"Tid spenderad på issue: "}</u>
+          </strong>{" "}
+          <br />
+          {selectedStatisticsIssue.actualTimeSpent === 0
+            ? "Ingen spenderad tid är satt"
+            : selectedStatisticsIssue.actualTimeSpent + "h"}
+        </p>
+        
         <IssueMessage issueId={selectedStatisticsIssue?.issueId || ""} />
+        <AddActualTimeSpent issueId={selectedStatisticsIssue?.issueId || ""} />
       </div>
+      <div className="differenscontainer">
+          <p>Differens mellan estimerad tid och spenderad tid för det här issuet:</p>
+          <p className={`differens ${differensClass}`}>{differens + "h"}</p>
+        </div>
     </>
   );
 }
