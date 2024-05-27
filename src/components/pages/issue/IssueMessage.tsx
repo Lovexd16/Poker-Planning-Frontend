@@ -5,7 +5,7 @@ function IssueMessage({ issueId }: { issueId: string }) {
   const [issueMessages, setIssueMessages] = useState<string[]>([]);
   const [newMessage, setNewMessage] = useState("");
 
-  useEffect(() => {
+  const fetchConversation = () => {
     const token = localStorage.getItem("token") || "";
     fetch(`http://localhost:8080/issue/${issueId}/conversation`, {
       headers: {
@@ -15,15 +15,23 @@ function IssueMessage({ issueId }: { issueId: string }) {
       .then((res) => res.json())
       .then((data) => setIssueMessages(data))
       .catch((error) => console.error("Error fetching messages:", error));
-  }, [issueId, issueMessages]);
+  };
+
+  useEffect(() => {
+    fetchConversation(); 
+  }, [issueId]);
 
   const sendMessage = () => {
     const token = localStorage.getItem("token") || "";
     const decodedToken = jwtDecode(token);
     const loggedInUser = decodedToken.sub;
-
+  
     const timestamp = new Date().toLocaleTimeString("sv-SE");
-
+  
+    const newMessageData = `${loggedInUser}: ${newMessage} - skickat: ${timestamp}`;
+  
+    setIssueMessages(prevMessages => [...prevMessages, newMessageData]);
+  
     fetch(
       `http://localhost:8080/issue/${issueId}/${loggedInUser}/conversation`,
       {
@@ -32,12 +40,13 @@ function IssueMessage({ issueId }: { issueId: string }) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(newMessage + " - skickat: " + timestamp),
+        body: newMessageData
       }
     )
       .then((res) => res.text())
-      .then((data) => setIssueMessages([...issueMessages, data]))
+      .then((data) => console.log("Message sent:", data))
       .catch((error) => console.error("Error sending message:", error));
+  
     setNewMessage("");
   };
 

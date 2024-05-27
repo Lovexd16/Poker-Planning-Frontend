@@ -18,9 +18,8 @@ function App() {
     return savedState ? JSON.parse(savedState) : false;
   });
 
-  const [selectedProject, setSelectedProject] =
-    useState<ProjectInterface | null>(null);
-
+  const [selectedProject, setSelectedProject] = useState<ProjectInterface | null>(null);  
+  
   useEffect(() => {
     localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
@@ -45,6 +44,7 @@ function App() {
 
   return (
     <>
+
       <Navigation
         setPage={setPage}
         setIsLoggedIn={setIsLoggedIn}
@@ -52,7 +52,8 @@ function App() {
         currentPage={page}
       />
 
-      {isLoggedIn && (
+      
+{isLoggedIn && (
         <Project
           setPage={setPage}
           setIsProjectSelected={(value: boolean) => {
@@ -68,7 +69,7 @@ function App() {
           selectedProject={selectedProject}
         />
       )}
-
+  
       {
         {
           login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,
@@ -76,9 +77,7 @@ function App() {
           issue: <Issue projectId={""} />,
           statistics: <Statistics />,
           newproject: <NewProject setPage={setPage} />,
-          selectedproject: (
-            <SelectedProject projectId={""} selectedProject={null} />
-          ),
+          selectedproject: <SelectedProject projectId={""} selectedProject={null} />
         }[page]
       }
     </>

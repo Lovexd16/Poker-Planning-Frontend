@@ -69,7 +69,7 @@ function Statistics() {
       ) : (
         <>
           <button className="button" onClick={goBack}>
-            Gå tillbaka till alla projekt
+            Gå tillbaka till alla avklarade projekt
           </button>
           <SelectedStatisticsProject
             projectId={selectedProject?.projectId || ""}
