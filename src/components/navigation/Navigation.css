@@ -98,6 +98,16 @@
   border-radius: 5px; 
 }
 
+.myMessage {
+  text-align: right;
+
+}
+
+.otherMessage {
+  text-align: left;
+ 
+}
+
 
 .totalchat {
     margin-right: 380px; 
