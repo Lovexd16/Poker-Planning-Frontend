@@ -21,7 +21,7 @@ function GetIssue({ projectId }: { projectId: string }) {
   useEffect(() => {
     const token = localStorage.getItem("token") || "";
 
-    fetch(`http://localhost:8080/issues/${projectId}`, {
+    fetch(`http://localhost:8080/issues/${projectId}/active`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -32,7 +32,7 @@ function GetIssue({ projectId }: { projectId: string }) {
 
   return (
     <div>
-      <h2>Issues som fanns i detta projekt</h2>
+      <h2>Oavklarade issues som fanns i det här projektet</h2>
       {showIssues ? (
         <div style={{ maxHeight: "30vh", overflowY: "auto" }}>
           {issues.length > 0 ? (
@@ -44,7 +44,7 @@ function GetIssue({ projectId }: { projectId: string }) {
               </div>
             ))
           ) : (
-            <p>Du hade inga issues för detta projektet.</p>
+            <p>Du hade inga oavklarade issues för detta projektet.</p>
           )}
         </div>
       ) : (
