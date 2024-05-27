@@ -1,12 +1,9 @@
-import UserInterface from "./UserInterface";
-import ProjectInterface from "./ProjectInterface";
-
 interface IssueInterface {
     issueId: string;
     issueName: string;
     issueDescription: string;
-    issueCreatedByUser: UserInterface;
-    issueForProject: ProjectInterface;
+    issueCreatedByUserId: string;
+    issueForProjectId: string;
     issueDate: Date;
     isDone: boolean;
     actualTimeSpent: number;

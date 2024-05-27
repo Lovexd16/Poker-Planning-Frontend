@@ -1,35 +1,70 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ProjectInterface from "../../interface/ProjectInterface";
+import AboutProject from "./AboutProject";
+import GetIssue from "../issue/GetIssue";
+import InviteUser from "./InviteUser";
+import IsDone from "./IsDone";
+import EditProject from "./EditProject";
+import NewIssue from "../issue/NewIssue";
+import Project from "./Project";
+import ProjectStatistics from "./ProjectStatistics";
+import DeleteProject from "./DeleteProject";
 
-function SelectedProject({projectId}: {projectId: string}) {
 
-    const [selectedProject, setSelectedProject] = useState<ProjectInterface | null>(null);
 
-    useEffect(() => {
-        fetch(`http://localhost:8080/project/${projectId}`)
-            .then(res => res.json())
-            .then(data => setSelectedProject(data))
-            .catch(error => console.error('Error fetching project:', error));
-    }, [projectId]);
+function SelectedProject({
+  projectId,
+  selectedProject,
+}: {
+  projectId: string;
+  selectedProject: ProjectInterface | null;
+}) {
+  const [selectedComponent, setSelectedComponent] = useState<
+    "issues" | "information" | "statistics" | "settings"
+  >("issues");
 
-   
+  function handleMenuClick(menu: "issues" | "information" | "statistics" | "settings") {
+    setSelectedComponent(menu);
+  }
+
     if (!selectedProject) {
-        return <p>Fel</p>;
+        return null; 
     }
 
     return (
         <>
-            <div key={selectedProject.projectId}>
-                <h2>{selectedProject.projectName}</h2>
-                <p>{selectedProject.projectDescription}</p>
-                <p>Medlemmar:</p>
-                {selectedProject.usersInProject.map(user => (
-                    <p key={user.userId}>{user.username}</p>
-                ))}
+            <div className="selectedprojectcontainer">
+                <header >
+                    <button className={`button ${selectedComponent === "issues" ? "active" : ""}`} onClick={() => handleMenuClick("issues")}>Issues</button>
+                    <button className={`button ${selectedComponent === "information" ? "active" : ""}`} onClick={() => handleMenuClick("information")}>Information</button>
+                    <button className={`button ${selectedComponent === "statistics" ? "active" : ""}`} onClick={() => handleMenuClick("statistics")}>Statistik</button>
+                    <button className={`button ${selectedComponent === "settings" ? "active" : ""}`} onClick={() => handleMenuClick("settings")}>Inställningar</button>
+                </header>
+                {selectedComponent === "issues" ? (
+                    <>
+                    <NewIssue projectId={projectId} />
+                    <GetIssue projectId={projectId} />
+                    </>
+                    
+                    
+                ) : selectedComponent === "information" ? (
+                    <AboutProject projectId={projectId} />
 
-                <p>{"Total estimerad tid för projekt: " + selectedProject.totalAgreedTime + "h"}</p>
-                <p>{"Total spenderad tid för projekt: " + selectedProject.totalActualTimeSpent + "h"}</p>
-                <p>{"Skapat av: " + selectedProject.projectCreatedByUser.username + "/" + selectedProject.projectDate.toString()}</p>
+                ) : selectedComponent === "statistics" ? (
+                    < ProjectStatistics projectId={projectId} />
+                ) : (
+                    <>
+                        <InviteUser projectId={projectId} />
+                        <IsDone projectId={projectId} />
+                        <EditProject 
+                            projectId={projectId} 
+                            projectName={selectedProject?.projectName || ""}
+                            projectDescription={selectedProject?.projectDescription || ""} 
+                            
+                        />
+                        <DeleteProject projectId={projectId} />
+                    </>
+                )}
             </div>
         </>
     );

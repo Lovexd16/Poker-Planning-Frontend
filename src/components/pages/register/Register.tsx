@@ -12,7 +12,7 @@ function Register({ setPage }: Props) {
   });
 
   const [errorMessage, setErrorMessage] = useState<string>("");
-
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
   const registerUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,7 +32,11 @@ function Register({ setPage }: Props) {
       })
       .then((data) => {
         console.log("Användare lades till: ", data);
-        setPage("login");
+        setErrorMessage("");
+        setSuccessMessage("Du är nu registrerad! Omdirigeras till login om 3 sek...");
+        setTimeout(() => {
+          setPage("login")
+        },3000);
       })
       .catch((error) => {
         console.error("Fel vid tillägning: ", error);
@@ -43,11 +47,11 @@ function Register({ setPage }: Props) {
   return (
     <div className="register">
       <form onSubmit={registerUser}>
-        <h2>Registrera</h2>
+        <h3>Registrera</h3>
         <label>
           Användarnamn
           <br />
-          <input
+          <input className="inputForm"
             type="text"
             required
             value={newUser.username}
@@ -61,7 +65,7 @@ function Register({ setPage }: Props) {
         <label>
           Lösenord
           <br />
-          <input
+          <input className="inputForm"
             type="password"
             required
             value={newUser.password}
@@ -72,8 +76,9 @@ function Register({ setPage }: Props) {
         </label>
         <br />
         <br />
-        {errorMessage && <p>{errorMessage}</p>}
-        <button type="submit">Registrera</button>
+        {errorMessage && <p style={{ fontSize: '20px'}}>{errorMessage}</p>}
+        {successMessage && <p style={{ fontSize: '20px'}}>{successMessage}</p>}
+        <button className="button" type="submit">Registrera ny användare</button>
       </form>
     </div>
   );

@@ -1,11 +1,9 @@
-import ProjectInterface from "./ProjectInterface";
-
 interface UserInterface {
-    userId: string;
-    username: string;
-    password: string;
-    isDeleted: boolean;
-    projects: ProjectInterface[];
+  userId: string;
+  username: string;
+  password: string;
+  isDeleted: boolean;
+  projectId: string[];
 }
 
 export default UserInterface;

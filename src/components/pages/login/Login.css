@@ -1,0 +1,15 @@
+.inputForm{
+    background-color: transparent;
+    color:rgb(255, 255, 254);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    border-radius: 4px; 
+  }
+
+body{
+    font-size: 16px;
+}
+.label{
+    font-size: 16px;
+}
+  

@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
-
 import ProjectInterface from "../../interface/ProjectInterface";
 import SelectedProject from "./SelectedProject";
-import InviteUser from "./InviteUser";
+import './Project.css';
 
-function Project() {
+
+interface Props {
+  setPage: (page: string) => void;
+  setIsProjectSelected: (value: boolean) => void;
+}
+
+
+function Project({ setPage, setIsProjectSelected }: Props) {
   const [projects, setProjects] = useState<ProjectInterface[]>([]);
   const [selectedProject, setSelectedProject] =
     useState<ProjectInterface | null>(null);
@@ -14,6 +20,7 @@ function Project() {
   const selectProject = (project: ProjectInterface) => {
     setSelectedProject(project);
     setShowProjects(false);
+    setIsProjectSelected(true); 
   };
 
   useEffect(() => {
@@ -21,7 +28,7 @@ function Project() {
     const decodedToken = jwtDecode(token);
     const loggedInUser = decodedToken.sub;
 
-    fetch(`http://localhost:8080/projects/${loggedInUser}`, {
+    fetch(`http://localhost:8080/activeprojects/${loggedInUser}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -30,35 +37,34 @@ function Project() {
       .then((data) => setProjects(data));
   }, [projects]);
 
-  const goBack = () => {
-    setSelectedProject(null);
-    setShowProjects(true);
-  };
 
+  
   return (
-    <div>
-      {showProjects ? (
-        projects.length > 0 ? (
-          projects.map((project: ProjectInterface) => (
-            <div key={project.projectId}>
-              <button onClick={() => selectProject(project)}>
-                {project.projectCreatedByUser.username +
-                  "/" +
-                  project.projectName}
-              </button>
-            </div>
-          ))
-        ) : (
-          <p>Du har inga aktiva projekt.</p>
-        )
-      ) : (
-        <>
-          <button onClick={goBack}>Gå tillbaka till alla projekt</button>
-          <SelectedProject projectId={selectedProject?.projectId || ""} />
-          <InviteUser projectId={selectedProject?.projectId || ""} />
-        </>
+    <>
+      <div className="container">
+        <details className="details-container" open={true}>
+          <summary>Dina aktiva projekt</summary>
+          <div style={{ maxHeight: '30vh', overflowY: 'auto' }}>
+            {projects.length > 0 ? (
+              projects.map((project: ProjectInterface) => (
+                <div key={project.projectId}>
+                  <button className="button" onClick={() => {
+                    selectProject(project);
+                  }}>
+                    <p>{project.projectCreatedByUserId + "/" + project.projectName}</p>
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p>Du har inga aktiva projekt.</p>
+            )}
+          </div>
+        </details>
+      </div>
+      {selectedProject && ( 
+        <SelectedProject projectId={selectedProject.projectId} selectedProject={selectedProject} />
       )}
-    </div>
+    </>
   );
 }
 
