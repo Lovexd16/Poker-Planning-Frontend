@@ -80,7 +80,6 @@ function SelectedProject({
         {selectedComponent === "issues" ? (
           <>
             <GetIssue projectId={projectId} />
-            <NewIssue projectId={projectId} />
           </>
         ) : selectedComponent === "doneissues" ? (
           <GetDoneIssues projectId={projectId} />

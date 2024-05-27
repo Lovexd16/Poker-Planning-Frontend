@@ -31,7 +31,7 @@ function Project({ setPage, setIsProjectSelected, setSelectedProject }: Props) {
     })
       .then((res) => res.json())
       .then((data) => setProjects(data));
-  }, []);
+  }, [projects]);
 
   return (
     <div className="container">
