@@ -19,7 +19,7 @@ function IssueMessage({ issueId }: { issueId: string }) {
 
   useEffect(() => {
     fetchConversation(); 
-  }, [issueId]);
+  }, [issueId, issueMessages]);
 
   const sendMessage = () => {
     const token = localStorage.getItem("token") || "";
@@ -50,13 +50,22 @@ function IssueMessage({ issueId }: { issueId: string }) {
     setNewMessage("");
   };
 
+  const token = localStorage.getItem("token") || "";
+  const loggedInUser = jwtDecode(token).sub;
+
+
   return (
     <>
       <div className="totalchat">
         <div className="chatcontainer">
-          {issueMessages.map((message, index) => (
-            <p key={index}>{message}</p>
-          ))}
+          {issueMessages.map((message, index) => {
+            const isOwnMessage = message.startsWith(`${loggedInUser}:`);
+            return (
+              <p key={index} className={isOwnMessage ? "myMessage" : "otherMessage"}>
+                {message}
+              </p>
+            );
+          })}
         </div>
         <div className="messagecontainer">
           <input className="inputForm"

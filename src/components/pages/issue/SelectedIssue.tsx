@@ -5,6 +5,7 @@ import IssueIsDone from "./IssueIsDone";
 import AddAgreedTime from "./AddAgreedTime";
 import AddActualTimeSpent from "./AddActualTime";
 import EstimateTime from "./EstimateTime";
+import DeleteIssue from "./DeleteIssue";
 
 function SelectedIssue({ issueId }: { issueId: string }) {
   const [selectedIssue, setSelectedIssue] = useState<IssueInterface | null>(
@@ -89,6 +90,7 @@ function SelectedIssue({ issueId }: { issueId: string }) {
         <AddAgreedTime issueId={selectedIssue?.issueId || ""} /><br/>
         <AddActualTimeSpent issueId={selectedIssue?.issueId || ""} /><br/>
         <IssueIsDone issueId={selectedIssue?.issueId || ""} /><br/>
+        <DeleteIssue issueId={selectedIssue?.issueId || ""} /><br/>
         
         </div>
       
