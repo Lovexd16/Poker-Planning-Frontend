@@ -9,6 +9,7 @@ import Statistics from "./components/pages/statistics/Statistics";
 import Navigation from "./components/navigation/Navigation";
 import NewProject from "./components/pages/project/NewProject";
 import SelectedProject from "./components/pages/project/SelectedProject";
+import ProjectInterface from "./components/interface/ProjectInterface";
 
 function App() {
   const [page, setPage] = useState<string>("");
@@ -18,7 +19,7 @@ function App() {
     return savedState ? JSON.parse(savedState) : false;
   });
 
-  const [, setIsProjectSelected] = useState<boolean>(false);
+  const [selectedProject, setSelectedProject] = useState<ProjectInterface | null>(null);  
   
   useEffect(() => {
     localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
@@ -53,8 +54,21 @@ function App() {
       />
 
       
-{isLoggedIn &&  (
-        <Project setPage={setPage} setIsProjectSelected={setIsProjectSelected} />
+{isLoggedIn && (
+        <Project
+          setPage={setPage}
+          setIsProjectSelected={(value: boolean) => {
+            if (!value) setSelectedProject(null);
+          }}
+          setSelectedProject={setSelectedProject}
+        />
+      )}
+
+      {isLoggedIn && selectedProject && page === "selectedproject" && (
+        <SelectedProject
+          projectId={selectedProject.projectId}
+          selectedProject={selectedProject}
+        />
       )}
   
       {
