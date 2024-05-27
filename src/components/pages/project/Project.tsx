@@ -1,24 +1,22 @@
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import ProjectInterface from "../../interface/ProjectInterface";
-import SelectedProject from "./SelectedProject";
 import './Project.css';
 
 
 interface Props {
   setPage: (page: string) => void;
   setIsProjectSelected: (value: boolean) => void;
+  setSelectedProject: (project: ProjectInterface | null) => void;
 }
 
-
-function Project({setIsProjectSelected }: Props) {
+function Project({ setPage, setIsProjectSelected, setSelectedProject }: Props) {
   const [projects, setProjects] = useState<ProjectInterface[]>([]);
-  const [selectedProject, setSelectedProject] =
-    useState<ProjectInterface | null>(null);
 
   const selectProject = (project: ProjectInterface) => {
     setSelectedProject(project);
-    setIsProjectSelected(true); 
+    setIsProjectSelected(true);
+    setPage('selectedproject');
   };
 
   useEffect(() => {
@@ -33,36 +31,29 @@ function Project({setIsProjectSelected }: Props) {
     })
       .then((res) => res.json())
       .then((data) => setProjects(data));
-  }, [projects]);
+  }, []);
 
-
-  
   return (
-    <>
-      <div className="container">
-        <details className="details-container" open={true}>
-          <summary>Dina aktiva projekt</summary>
-          <div style={{ maxHeight: '30vh', overflowY: 'auto' }}>
-            {projects.length > 0 ? (
-              projects.map((project: ProjectInterface) => (
-                <div key={project.projectId}>
-                  <button className="button" onClick={() => {
-                    selectProject(project);
-                  }}>
-                    <p>{project.projectCreatedByUserId + "/" + project.projectName}</p>
-                  </button>
-                </div>
-              ))
-            ) : (
-              <p>Du har inga aktiva projekt.</p>
-            )}
-          </div>
-        </details>
-      </div>
-      {selectedProject && ( 
-        <SelectedProject projectId={selectedProject.projectId} selectedProject={selectedProject} />
-      )}
-    </>
+    <div className="container">
+      <details className="details-container" open={true}>
+        <summary>Dina aktiva projekt</summary>
+        <div style={{ maxHeight: '30vh', overflowY: 'auto' }}>
+          {projects.length > 0 ? (
+            projects.map((project: ProjectInterface) => (
+              <div key={project.projectId}>
+                <button className="button" onClick={() => {
+                  selectProject(project);
+                }}>
+                  <p>{project.projectCreatedByUserId + "/" + project.projectName}</p>
+                </button>
+              </div>
+            ))
+          ) : (
+            <p>Du har inga aktiva projekt.</p>
+          )}
+        </div>
+      </details>
+    </div>
   );
 }
 

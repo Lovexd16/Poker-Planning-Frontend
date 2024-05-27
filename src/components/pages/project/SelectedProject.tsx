@@ -33,6 +33,7 @@ function SelectedProject({
     return (
         <>
             <div className="selectedprojectcontainer">
+                <h2>{selectedProject.projectName}</h2>
                 <header >
                     <button className={`button ${selectedComponent === "issues" ? "active" : ""}`} onClick={() => handleMenuClick("issues")}>Issues</button>
                     <button className={`button ${selectedComponent === "information" ? "active" : ""}`} onClick={() => handleMenuClick("information")}>Information</button>
