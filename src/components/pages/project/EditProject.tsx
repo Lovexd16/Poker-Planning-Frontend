@@ -52,13 +52,13 @@ function EditProject({projectId, projectName, projectDescription}: {projectId: s
         <form onSubmit={editProject}>
         <label>
             Projektnamn<br />
-            <input type="text" placeholder={projectName} required size={30} value={newEditProject.projectName} onChange={(e) => setEditProject({...newEditProject, projectName: e.target.value})}></input>
+            <input placeholder={projectName} className="inputForm" type ="text" required size={30} value={newEditProject.projectName} onChange={(e) => setEditProject({...newEditProject, projectName: e.target.value})}></input>
           </label><br/><br/>
           <label>
             Projektbeskrivning<br />
-            <textarea placeholder={projectDescription} required style={{width: '100%', height: '50px'}}value={newEditProject.projectDescription} onChange={(e) => setEditProject({...newEditProject, projectDescription: e.target.value})}></textarea>
+            <textarea placeholder={projectDescription} className="inputForm textarea" maxLength={124} required style={{width: '212px', height: '70px'}}value={newEditProject.projectDescription} onChange={(e) => setEditProject({...newEditProject, projectDescription: e.target.value})}></textarea>
           </label><br/><br/>
-          <button type="submit">Redigera projekt</button>
+          <button className='issueButtons' type="submit">Redigera projekt</button>
         </form>
         </details>
         </>

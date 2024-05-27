@@ -26,7 +26,7 @@ function DeleteProject({projectId}: {projectId: string}) {
         <>
         <details>
         <summary>Radera projekt</summary>
-            <button onClick={deleteProject} >Radera projekt</button>
+            <button className="issueButtons" onClick={deleteProject} >Radera projekt</button>
         </details>
         </>
     )

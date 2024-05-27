@@ -40,7 +40,7 @@ function IsDone({projectId}: {projectId: string}) {
         <>
         <details>
         <summary>Markera projekt som klar</summary>
-            <button onClick={markAsDone} >Markera som klar</button>
+            <button className='issueButtons' onClick={markAsDone} >Markera som klar</button>
         </details>
         </>
     )
