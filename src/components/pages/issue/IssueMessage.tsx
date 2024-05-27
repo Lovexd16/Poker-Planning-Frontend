@@ -59,7 +59,7 @@ function IssueMessage({ issueId }: { issueId: string }) {
           ))}
         </div>
         <div className="messagecontainer">
-          <input
+          <input className="inputForm"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
           ></input>

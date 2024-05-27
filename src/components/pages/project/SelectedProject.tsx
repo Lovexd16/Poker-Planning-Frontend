@@ -5,7 +5,6 @@ import GetIssue from "../issue/GetIssue";
 import InviteUser from "./InviteUser";
 import IsDone from "./IsDone";
 import EditProject from "./EditProject";
-import NewIssue from "../issue/NewIssue";
 import ProjectStatistics from "./ProjectStatistics";
 import DeleteProject from "./DeleteProject";
 import GetDoneIssues from "../issue/GetDoneIssues";
@@ -89,13 +88,14 @@ function SelectedProject({
           <ProjectStatistics projectId={projectId} />
         ) : (
           <>
-            <InviteUser projectId={projectId} />
-            <IsDone projectId={projectId} />
+            <InviteUser projectId={projectId} /><br/>
             <EditProject
               projectId={projectId}
               projectName={selectedProject?.projectName || ""}
               projectDescription={selectedProject?.projectDescription || ""}
-            />
+            /><br/>
+            <IsDone projectId={projectId} /><br/>
+           
             <DeleteProject projectId={projectId} />
           </>
         )}

@@ -59,7 +59,7 @@ function GetIssue({ projectId }: { projectId: string }) {
           </button>
           
           <SelectedIssue issueId={selectedIssue?.issueId || ""} />
-          <EstimateTime issueId={selectedIssue?.issueId || ""} />
+    
         </>
       )}
     </div>

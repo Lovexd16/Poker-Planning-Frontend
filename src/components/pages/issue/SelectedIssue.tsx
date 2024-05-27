@@ -4,7 +4,7 @@ import IssueMessage from "./IssueMessage";
 import IssueIsDone from "./IssueIsDone";
 import AddAgreedTime from "./AddAgreedTime";
 import AddActualTimeSpent from "./AddActualTime";
-import EditIssue from "./EditIssue";
+import EstimateTime from "./EstimateTime";
 
 function SelectedIssue({ issueId }: { issueId: string }) {
   const [selectedIssue, setSelectedIssue] = useState<IssueInterface | null>(
@@ -28,7 +28,8 @@ function SelectedIssue({ issueId }: { issueId: string }) {
 
   return (
     <>
-      <div key={selectedIssue.issueId}>
+      <div className="totalcontainer" key={selectedIssue.issueId}>
+        <div className="informationcontainer">
         <h3>
           <u>Namn på issue: </u>
         </h3>
@@ -80,15 +81,18 @@ function SelectedIssue({ issueId }: { issueId: string }) {
             ? "Ingen spenderad tid är satt"
             : selectedIssue.actualTimeSpent + "h"}
         </p>
-        <EditIssue
-          issueId={issueId}
-          issueName={selectedIssue?.issueName || ""}
-          issueDescription={selectedIssue?.issueDescription || ""}
-        />
-        <IssueIsDone issueId={selectedIssue?.issueId || ""} />
-        <AddAgreedTime issueId={selectedIssue?.issueId || ""} />
-        <AddActualTimeSpent issueId={selectedIssue?.issueId || ""} />
+
+        </div>
         <IssueMessage issueId={selectedIssue?.issueId || ""} />
+        <div className="choicecontainer">
+        <EstimateTime issueId={selectedIssue?.issueId || ""} /><br/>
+        <AddAgreedTime issueId={selectedIssue?.issueId || ""} /><br/>
+        <AddActualTimeSpent issueId={selectedIssue?.issueId || ""} /><br/>
+        <IssueIsDone issueId={selectedIssue?.issueId || ""} /><br/>
+        
+        </div>
+      
+       
       </div>
     </>
   );

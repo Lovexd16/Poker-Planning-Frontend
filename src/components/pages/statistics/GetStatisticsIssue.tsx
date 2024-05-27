@@ -49,7 +49,7 @@ function GetIssue({ projectId }: { projectId: string }) {
         </div>
       ) : (
         <>
-          <button className="button" onClick={goBack}>
+          <button className="issueButtons" onClick={goBack}>
             Gå tillbaka till alla issues
           </button>
           <SelectedStatisticsIssue
