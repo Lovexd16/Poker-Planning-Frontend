@@ -4,11 +4,11 @@ import Project from "./components/pages/project/Project";
 import Issue from "./components/pages/issue/NewIssue";
 import Login from "./components/pages/login/Login";
 import Register from "./components/pages/register/Register";
-import Statistics from "./components/pages/statistics/Statistics";
 import Navigation from "./components/navigation/Navigation";
 import NewProject from "./components/pages/project/NewProject";
 import SelectedProject from "./components/pages/project/SelectedProject";
 import ProjectInterface from "./components/interface/ProjectInterface";
+import InactiveProject from "./components/pages/statistics/InactiveProject";
 
 function App() {
   const [page, setPage] = useState<string>("");
@@ -75,7 +75,7 @@ function App() {
           login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,
           register: <Register setPage={setPage} />,
           issue: <Issue projectId={""} />,
-          statistics: <Statistics />,
+          inactiveprojects: <InactiveProject />,
           newproject: <NewProject setPage={setPage} />,
           selectedproject: <SelectedProject projectId={""} selectedProject={null} />
         }[page]

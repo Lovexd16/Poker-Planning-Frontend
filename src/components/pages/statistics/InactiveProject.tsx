@@ -3,7 +3,7 @@ import { jwtDecode } from "jwt-decode";
 import ProjectInterface from "../../interface/ProjectInterface";
 import SelectedStatisticsProject from "./SelectedStatisticsProject";
 
-function Statistics() {
+function InactiveProject() {
   const [inactiveProjects, setInactiveProjects] = useState<ProjectInterface[]>(
     []
   );
@@ -80,4 +80,4 @@ function Statistics() {
   );
 }
 
-export default Statistics;
+export default InactiveProject;

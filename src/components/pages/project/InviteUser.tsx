@@ -12,6 +12,7 @@ function InviteUser({ projectId }: { projectId: string }) {
   const [inputValue, setInputValue] = useState<string>("");
   const [selectedUser, setSelectedUser] = useState<UserInterface | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
   const selectUser = (user: UserInterface) => {
     setSelectedUser(user);
@@ -72,6 +73,8 @@ function InviteUser({ projectId }: { projectId: string }) {
 
           throw new Error("Kunde inte bjuda in användaren!");
         }
+        setSuccessMessage("Du bjöd precis in " + selectedUser?.username + " till projektet!" )
+        setInputValue("");
         setInvitedUser({
           username: "",
         });
@@ -105,6 +108,7 @@ function InviteUser({ projectId }: { projectId: string }) {
             ))}
           </div>
         )}
+        {successMessage && <p>{successMessage}</p>}
         {errorMessage && <p>{errorMessage}</p>}
       </details>
     </>

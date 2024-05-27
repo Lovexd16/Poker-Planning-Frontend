@@ -25,33 +25,72 @@ function SelectedIssue({ issueId }: { issueId: string }) {
     return <p>Laddar...</p>;
   }
 
+  const differens =
+    selectedIssue.agreedTime - selectedIssue.actualTimeSpent;
+  const differensClass = differens < 0 ? "red" : "green";
+
   return (
     <>
       <div key={selectedIssue.issueId}>
-        <h2>{selectedIssue.issueName}</h2>
-        <p>{selectedIssue.issueDescription}</p>
-        <p>{"Estimerad tid av medlemmar: " + selectedIssue.estimatedTime}</p>
+        <h3>
+          <u>Namn på issue: </u>
+        </h3>
+        <h3>{selectedIssue.issueName}</h3>
         <p>
-          {"Överenskommen tid för issue: " + selectedIssue.agreedTime + "h"}
+          <strong>
+            <u>Beskrivning av issue: </u>
+          </strong>{" "}
+          <br />
+          {selectedIssue.issueDescription}
         </p>
         <p>
-          {"Tid spenderad för issue: " + selectedIssue.actualTimeSpent + "h"}
-        </p>
-        <p>
-          {"Skapat av: " +
-            selectedIssue.issueCreatedByUserId +
+          <strong>
+            <u>Issue skapat av: </u>
+          </strong>{" "}
+          <br />
+          {selectedIssue.issueCreatedByUserId +
             "/" +
             selectedIssue.issueDate.toString()}
         </p>
-        <EditIssue
-          issueId={issueId}
-          issueName={selectedIssue?.issueName || ""}
-          issueDescription={selectedIssue?.issueDescription || ""}
-        />
+        <p>
+          <strong>
+            <u>{"Estimerad tid av medlemmar: "}</u>
+          </strong>{" "}
+          <br />
+          {selectedIssue.estimatedTime && selectedIssue.estimatedTime.length > 0
+            ? selectedIssue.estimatedTime.map((estimate, index) => (
+                <span key={index}>
+                  {index > 0 && <br />} {estimate}
+                </span>
+              ))
+            : "Inga estimeringar gjordes"}
+        </p>
+        <p>
+          <strong>
+            <u>{"Överenskommen tid för issue: "}</u>
+          </strong>{" "}
+          <br />
+          {selectedIssue.agreedTime === 0
+            ? "Ingen överenskommen tid bestämdes"
+            : selectedIssue.agreedTime + "h"}
+        </p>
+        <p>
+          <strong>
+            <u>{"Tid spenderad på issue: "}</u>
+          </strong>{" "}
+          <br />
+          {selectedIssue.actualTimeSpent === 0
+            ? "Ingen spenderad tid är satt"
+            : selectedIssue.actualTimeSpent + "h"}
+        </p>
+        
         <IssueMessage issueId={selectedIssue?.issueId || ""} />
-        <AddAgreedTime issueId={selectedIssue?.issueId || ""} />
         <AddActualTimeSpent issueId={selectedIssue?.issueId || ""} />
       </div>
+      <div className="differenscontainer">
+          <p>Differens mellan estimerad tid och spenderad tid för det här issuet:</p>
+          <p className={`differens ${differensClass}`}>{differens + "h"}</p>
+        </div>
     </>
   );
 }
