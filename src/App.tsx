@@ -18,7 +18,7 @@ function App() {
     return savedState ? JSON.parse(savedState) : false;
   });
 
-  const [isProjectSelected, setIsProjectSelected] = useState<boolean>(false);
+  const [, setIsProjectSelected] = useState<boolean>(false);
   
   useEffect(() => {
     localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));

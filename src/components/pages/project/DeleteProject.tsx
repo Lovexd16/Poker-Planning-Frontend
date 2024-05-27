@@ -1,5 +1,3 @@
-import React, { useState } from 'react'
-
 function DeleteProject({projectId}: {projectId: string}) {
    
     const deleteProject = () => {

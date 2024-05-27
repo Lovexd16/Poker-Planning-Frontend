@@ -1,5 +1,5 @@
 import IssueInterface from '../../interface/IssueInterface';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import SelectedIssue from './SelectedIssue';
 import EstimateTime from './EstimateTime';
 

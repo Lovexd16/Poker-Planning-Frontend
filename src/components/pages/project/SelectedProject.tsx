@@ -6,7 +6,6 @@ import InviteUser from "./InviteUser";
 import IsDone from "./IsDone";
 import EditProject from "./EditProject";
 import NewIssue from "../issue/NewIssue";
-import Project from "./Project";
 import ProjectStatistics from "./ProjectStatistics";
 import DeleteProject from "./DeleteProject";
 
