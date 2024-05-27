@@ -33,13 +33,13 @@ function GetDoneIssues({ projectId }: { projectId: string }) {
 
   return (
     <div>
-      <h2>Avklarade issues</h2>
+      {/* <h2>Avklarade issues</h2> */}
       {showIssues ? (
         <div style={{ maxHeight: "30vh", overflowY: "auto" }}>
           {issues.length > 0 ? (
             issues.map((issue: IssueInterface) => (
               <div key={issue.issueId}>
-                <button className="button" onClick={() => selectIssue(issue)}>
+                <button className="issueButtonss" onClick={() => selectIssue(issue)}>
                   {issue.issueName}
                 </button>
               </div>

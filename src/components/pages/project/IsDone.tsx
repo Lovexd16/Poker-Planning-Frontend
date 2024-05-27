@@ -10,6 +10,10 @@ function IsDone({projectId}: {projectId: string}) {
         isDone: false
     })
 
+    const [errorMessage, setErrorMessage] = useState<string>("");
+    const [successMessage, setSuccessMessage] = useState<string>("");
+  
+
     const markAsDone = () => {
        
         const token = localStorage.getItem('token') || '';
@@ -27,12 +31,14 @@ function IsDone({projectId}: {projectId: string}) {
             if (!response.ok) {
                 throw new Error("Kunde inte markera klart projekt!");
             }
+            setSuccessMessage("Projektet är nu avklarat!")
             setNewIsDone({
                 isDone: false
             });
         })
         .catch(error => {
             console.error("Error mark as project done:", error);
+            setErrorMessage("Du har redan markerat det här projektet som klar")
         });
     };
 
@@ -41,6 +47,8 @@ function IsDone({projectId}: {projectId: string}) {
         <details>
         <summary>Markera projekt som klar</summary>
             <button className='issueButtons' onClick={markAsDone} >Markera som klar</button>
+            {successMessage && <p>{successMessage}</p>}
+        {errorMessage && <p>{errorMessage}</p>}
         </details>
         </>
     )

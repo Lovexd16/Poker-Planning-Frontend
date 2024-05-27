@@ -8,6 +8,7 @@ import EditProject from "./EditProject";
 import ProjectStatistics from "./ProjectStatistics";
 import DeleteProject from "./DeleteProject";
 import GetDoneIssues from "../issue/GetDoneIssues";
+import NewIssue from "../issue/NewIssue";
 
 function SelectedProject({
   projectId,
@@ -79,6 +80,7 @@ function SelectedProject({
         {selectedComponent === "issues" ? (
           <>
             <GetIssue projectId={projectId} />
+            <NewIssue projectId={projectId} />
           </>
         ) : selectedComponent === "doneissues" ? (
           <GetDoneIssues projectId={projectId} />
