@@ -9,10 +9,13 @@ import NewProject from "./components/pages/project/NewProject";
 import SelectedProject from "./components/pages/project/SelectedProject";
 import ProjectInterface from "./components/interface/ProjectInterface";
 import InactiveProject from "./components/pages/statistics/InactiveProject";
+import GetIssue from "./components/pages/issue/GetIssue";
+
 
 
 function App() {
   const [page, setPage] = useState<string>("");
+  
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
     const savedState = localStorage.getItem("isLoggedIn");
@@ -43,6 +46,11 @@ function App() {
     window.history.pushState(null, "", "?page=" + pageUrl);
   }, [page]);
 
+  useEffect(() => {
+    console.log("Current page:", page);
+    console.log(selectedProject?.projectName);
+  }, [page]);
+
   return (
     <>
 
@@ -64,7 +72,7 @@ function App() {
         />
       )}
 
-      {isLoggedIn && selectedProject && page === "selectedproject" && (
+      {isLoggedIn && selectedProject && page === `selectedproject/${selectedProject.projectName}` && (
         <SelectedProject
           projectId={selectedProject.projectId}
           selectedProject={selectedProject}
@@ -78,7 +86,7 @@ function App() {
           issue: <Issue projectId={""} />,
           inactiveproject: <InactiveProject />,
           newproject: <NewProject setPage={setPage} />,
-          selectedproject: <SelectedProject projectId={""} selectedProject={null} />
+          selectedproject: <SelectedProject projectId={""} selectedProject={null} />,
         }[page]
       }
     </>

@@ -25,17 +25,7 @@ function AboutProject({ projectId }: { projectId: string }) {
         {selectedProject.usernameInProject.map((username) => (
           <p key={username}>{username}</p>
         ))}
-
-        <p>
-          {"Total estimerad tid för projekt: " +
-            selectedProject.totalAgreedTime +
-            "h"}
-        </p>
-        <p>
-          {"Total spenderad tid för projekt: " +
-            selectedProject.totalActualTimeSpent +
-            "h"}
-        </p>
+        
         <p>
           {"Skapat av: " +
             selectedProject.projectCreatedByUserId +

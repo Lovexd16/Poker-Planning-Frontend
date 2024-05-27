@@ -39,7 +39,7 @@ function AddAgreedTime({ issueId }: { issueId: string }) {
   return (
     <>
       <details>
-        <summary>Överenskommen tid för issue</summary>
+        <summary>Sätt överenskommen tid</summary>
         <form onSubmit={agreedTimeForIssue}>
           <select
             value={newAgreedTime.agreedTime}

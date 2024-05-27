@@ -37,7 +37,7 @@ function IssueIsDone({ issueId }: { issueId: string }) {
     <>
       <details>
         <summary>Markera issue som klar</summary>
-        <button className="button" onClick={markAsDone}>
+        <button className="issueButtons" onClick={markAsDone}>
           Markera som klar
         </button>
       </details>

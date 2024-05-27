@@ -68,7 +68,7 @@ function InactiveProject() {
         </div>
       ) : (
         <>
-          <button className="button" onClick={goBack}>
+          <button className="issueButtons" onClick={goBack}>
             Gå tillbaka till alla avklarade projekt
           </button>
           <SelectedStatisticsProject

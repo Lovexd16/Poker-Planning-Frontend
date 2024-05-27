@@ -12,12 +12,15 @@ interface Props {
 
 function Project({ setPage, setIsProjectSelected, setSelectedProject }: Props) {
   const [projects, setProjects] = useState<ProjectInterface[]>([]);
+  const [activeProjectId, setActiveProjectId] = useState<string>("");
 
   const selectProject = (project: ProjectInterface) => {
     setSelectedProject(project);
     setIsProjectSelected(true);
-    setPage('selectedproject');
+    setPage(`selectedproject/${project.projectName}`);
+    setActiveProjectId(project.projectId);
   };
+
 
   useEffect(() => {
     const token = localStorage.getItem("token") || "";
@@ -41,7 +44,7 @@ function Project({ setPage, setIsProjectSelected, setSelectedProject }: Props) {
           {projects.length > 0 ? (
             projects.map((project: ProjectInterface) => (
               <div key={project.projectId}>
-                <button className="button" onClick={() => {
+                <button className={`button ${activeProjectId === project.projectId ? 'active' : ''}`} style={{ marginBottom: '10px' }} onClick={() => {
                   selectProject(project);
                 }}>
                   <p>{project.projectCreatedByUserId + "/" + project.projectName}</p>

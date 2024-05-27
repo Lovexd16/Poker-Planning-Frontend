@@ -40,7 +40,7 @@ function AddActualTimeSpent({ issueId }: { issueId: string }) {
   return (
     <>
       <details>
-        <summary>Hur långt tid tog issuet egentligen?</summary>
+        <summary>Sätt faktisk spenderad tid</summary>
         <form onSubmit={actualTimeSpentForIssue}>
           <select
             value={newActualTimeSpent.actualTimeSpent}
@@ -51,7 +51,7 @@ function AddActualTimeSpent({ issueId }: { issueId: string }) {
               })
             }
           >
-            <option value={0}>Sätt egentlig tid tid</option>
+            <option value={0}>Sätt spenderad tid</option>
             <option value={1}>1h</option>
             <option value={2}>2h</option>
             <option value={4}>4h</option>
