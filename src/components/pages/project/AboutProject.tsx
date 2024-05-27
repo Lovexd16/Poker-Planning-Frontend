@@ -21,17 +21,17 @@ function AboutProject({ projectId }: { projectId: string }) {
       <div key={selectedProject.projectId}>
         <h2>{selectedProject.projectName}</h2>
         <p>{selectedProject.projectDescription}</p>
-        <p>Medlemmar:</p>
+        <strong><p><u>Medlemmar:</u></p></strong>
         {selectedProject.usernameInProject.map((username) => (
           <p key={username}>{username}</p>
         ))}
-        
-        <p>
+
+        <strong><p>
           {"Skapat av: " +
             selectedProject.projectCreatedByUserId +
             "/" +
             selectedProject.projectDate.toString()}
-        </p>
+        </p></strong>
       </div>
     </>
   );
