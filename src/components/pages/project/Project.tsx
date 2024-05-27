@@ -11,15 +11,13 @@ interface Props {
 }
 
 
-function Project({ setPage, setIsProjectSelected }: Props) {
+function Project({setIsProjectSelected }: Props) {
   const [projects, setProjects] = useState<ProjectInterface[]>([]);
   const [selectedProject, setSelectedProject] =
     useState<ProjectInterface | null>(null);
-  const [showProjects, setShowProjects] = useState(true);
 
   const selectProject = (project: ProjectInterface) => {
     setSelectedProject(project);
-    setShowProjects(false);
     setIsProjectSelected(true); 
   };
 
