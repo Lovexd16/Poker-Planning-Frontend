@@ -22,6 +22,22 @@
     cursor: pointer; 
     
 }
+
+.issueButtonss{
+
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    font-weight:500;
+    padding: 10px 20px; 
+    background-color: #2a2358;
+    color: rgb(231, 235, 238); 
+    border-radius: 5px; 
+    cursor: pointer; 
+    max-width: 700px;
+    max-height: 500px;
+    text-align: left;
+    margin-bottom: 10px;
+}
   
 .issueButtons:hover{
   background-color: #2a2352; 
@@ -105,7 +121,7 @@
 
 .choicecontainer {
   margin-left: 980px;
-  margin-top: 330px;  
+  margin-top: 400px;  
   text-align: left;
   position: absolute;
 }

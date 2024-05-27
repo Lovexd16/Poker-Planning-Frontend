@@ -31,19 +31,19 @@ function SelectedIssue({ issueId }: { issueId: string }) {
       <div className="totalcontainer" key={selectedIssue.issueId}>
         <div className="informationcontainer">
         <h3>
-          <u>Namn på issue: </u>
+          <u>Namn på issue </u>
         </h3>
         <h3>{selectedIssue.issueName}</h3>
         <p>
           <strong>
-            <u>Beskrivning av issue: </u>
+            <u>Beskrivning av issue </u>
           </strong>{" "}
           <br />
           {selectedIssue.issueDescription}
         </p>
         <p>
           <strong>
-            <u>Issue skapat av: </u>
+            <u>Issue skapat av </u>
           </strong>{" "}
           <br />
           {selectedIssue.issueCreatedByUserId +
@@ -52,7 +52,7 @@ function SelectedIssue({ issueId }: { issueId: string }) {
         </p>
         <p>
           <strong>
-            <u>{"Estimerad tid av medlemmar: "}</u>
+            <u>{"Estimerad tid av medlemmar "}</u>
           </strong>{" "}
           <br />
           {selectedIssue.estimatedTime && selectedIssue.estimatedTime.length > 0
@@ -65,7 +65,7 @@ function SelectedIssue({ issueId }: { issueId: string }) {
         </p>
         <p>
           <strong>
-            <u>{"Överenskommen tid för issue: "}</u>
+            <u>{"Överenskommen tid för issue "}</u>
           </strong>{" "}
           <br />
           {selectedIssue.agreedTime === 0
@@ -74,7 +74,7 @@ function SelectedIssue({ issueId }: { issueId: string }) {
         </p>
         <p>
           <strong>
-            <u>{"Tid spenderad på issue: "}</u>
+            <u>{"Tid spenderad på issue "}</u>
           </strong>{" "}
           <br />
           {selectedIssue.actualTimeSpent === 0
