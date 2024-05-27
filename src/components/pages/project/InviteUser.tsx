@@ -91,20 +91,25 @@ function InviteUser({ projectId }: { projectId: string }) {
         <summary>Bjud in användare</summary>
         <form onSubmit={inviteUser}>
           <input
+            className="inputForm"
             type="text"
+            required
+            size={30}
             value={inputValue}
             onChange={handleInputChange}
             placeholder="Sök användare..."
-            required
           />
-          <button type="submit">Bjud in</button>
+          <button className="issueButtons" type="submit">Bjud in</button>
         </form>
         {inputValue !== "" && (
           <div>
             {filteredUsers.map((user) => (
-              <button onClick={() => selectUser(user)} key={user.userId}>
-                {user.username}
-              </button>
+              <div key={user.userId}>
+                <button className="issueButtons" onClick={() => selectUser(user)}>
+                  {user.username}
+                </button>
+                <br />
+              </div>
             ))}
           </div>
         )}
