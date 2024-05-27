@@ -22,7 +22,6 @@ function ProjectStatistics({projectId}: {projectId: string}) {
             <div key={selectedProject.projectId}>
                 <p>{"Total estimerad tid för projekt: " + selectedProject.totalAgreedTime + "h"}</p>
                 <p>{"Total spenderad tid för projekt: " + selectedProject.totalActualTimeSpent + "h"}</p>
-                <p>{"Skapat av: " + selectedProject.projectCreatedByUserId + "/" + selectedProject.projectDate.toString()}</p>
             </div>
         </>
     );
