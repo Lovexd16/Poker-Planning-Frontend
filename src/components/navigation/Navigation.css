@@ -9,22 +9,38 @@
     border-radius: 5px; 
     cursor: pointer; 
     transition: background-color 0.3s; /
-  }
+}
   
-  .button:hover {
-      background-color: #2a2352; 
-      font-weight: 600;
-    }
+.button:hover {
+  background-color: #2a2352; 
+  font-weight: 600;
+}
   
-  .button:active { 
-    background-color: #2a2352; 
-    font-weight:600;
+.button:active { 
+  background-color: #2a2352; 
+  font-weight:600;
 
+}
+
+.button.active {
+  background-color: #2a2352; 
+  font-weight: 600;
+}
+
+.green {
+  color: lightgreen;
+}
+  
+.red {
+  color:lightcoral;
   }
 
-  .button.active {
-    background-color: #2a2352; 
-    font-weight: 600;
-  }
+.differenscontainer {
+  display: flex;
+  margin-left: 410px; 
+}
 
+.differens {
+  margin-left: 6px; 
+}
   
