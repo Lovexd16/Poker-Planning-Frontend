@@ -1,4 +1,4 @@
-/* button{
+ button{
     background-color: rgb(42, 211, 223);
     padding-left: 15px;
     padding-right: 15px;
@@ -9,27 +9,4 @@
     cursor: pointer;
     border-radius: 5px;
  
-} */
-
-.details-container {
-    margin-left: 20px; 
-    margin-top: 10px;  
-    position: relative;
-  }
-
-  .container {
-  
-    margin-top: 20px;  
-    position: relative;
-    max-width: 350px;
-    position: fixed;
-  }
-
-  .textarea {
-    resize: none;
-    overflow: hidden;
-  }
-
-  .selectedprojectcontainer{
-    margin-top: 60px;
-  }
+} 

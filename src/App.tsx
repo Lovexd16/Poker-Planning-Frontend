@@ -51,12 +51,6 @@ function App() {
         isLoggedIn={isLoggedIn}
         currentPage={page}
       />
-
-      
-{isLoggedIn &&  (
-        <Project setPage={setPage} setIsProjectSelected={setIsProjectSelected} />
-      )}
-  
       {
         {
           login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,
@@ -65,7 +59,8 @@ function App() {
           issueDetails: <IssueDetails />,
           statistics: <Statistics />,
           newproject: <NewProject setPage={setPage} />,
-          selectedproject: <SelectedProject projectId={""} selectedProject={null} />
+          selectedproject: <SelectedProject projectId={""} selectedProject={null} />,
+          project: isLoggedIn && <Project setPage={setPage} setIsProjectSelected={setIsProjectSelected} />,
         }[page]
       }
     </>

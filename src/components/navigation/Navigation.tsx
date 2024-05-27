@@ -27,7 +27,15 @@ function Navigation({ setPage, isLoggedIn, setIsLoggedIn, currentPage }: Props) 
           >
             Avklarade projekt
           </button>
-        </>
+      
+          <button
+          className={`button ${currentPage === "project" ? "active" : ""}`}
+          onClick={() => setPage("project")}
+        >
+          Aktiva projekt
+        </button>
+      </>
+          
       ) : (
         <>
           <button

@@ -37,35 +37,37 @@ function Project({ setPage, setIsProjectSelected }: Props) {
       .then((data) => setProjects(data));
   }, [projects]);
 
-
   
   return (
     <>
-      <div className="container">
-        <details className="details-container" open={true}>
-          <summary>Dina aktiva projekt</summary>
-          <div style={{ maxHeight: '30vh', overflowY: 'auto' }}>
-            {projects.length > 0 ? (
-              projects.map((project: ProjectInterface) => (
-                <div key={project.projectId}>
-                  <button className="button" onClick={() => {
-                    selectProject(project);
-                  }}>
-                    <p>{project.projectCreatedByUserId + "/" + project.projectName}</p>
-                  </button>
-                </div>
-              ))
-            ) : (
-              <p>Du har inga aktiva projekt.</p>
-            )}
-          </div>
-        </details>
-      </div>
-      {selectedProject && ( 
-        <SelectedProject projectId={selectedProject.projectId} selectedProject={selectedProject} />
+  
+      {showProjects && (
+        
+        <div style={{ maxHeight: '30vh', overflowY: 'auto' }}>
+          <h2>Aktiva projekt:</h2>
+          {projects.length > 0 ? (
+            projects.map((project: ProjectInterface) => (
+              <div key={project.projectId}>
+                <button className="button" onClick={() => {
+                  selectProject(project);
+                }}>
+                  <p>{project.projectCreatedByUserId + "/" + project.projectName}</p>
+                </button>
+              </div>
+            )) 
+          ) : (
+            <p>Du har inga aktiva projekt.</p>
+          )}
+        </div>
       )}
+      <div>  
+        {selectedProject && ( 
+          <SelectedProject projectId={selectedProject.projectId} selectedProject={selectedProject} />
+        )}
+      </div>
     </>
   );
 }
+
 
 export default Project;

@@ -40,3 +40,26 @@
 .read-the-docs {
   color: #888;
 }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body::before {
+  content: "";
+  background: url('../public/pokerbackground.png') no-repeat center -600% fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 0.4; 
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+body {
+  position: relative;
+}

@@ -42,8 +42,8 @@ function Statistics() {
     <>
       {showProjects ? (
         <div>
-          <details  open={true}>
-            <summary>Dina avklarade projekt</summary>
+         
+            <h2>Dina avklarade projekt:</h2>
             <div style={{ maxHeight: "30vh", overflowY: "auto" }}>
               {inactiveProjects.length > 0 ? (
                 inactiveProjects.map((project: ProjectInterface) => (
@@ -64,7 +64,6 @@ function Statistics() {
                 <p>Du har inga inaktiva projekt.</p>
               )}
             </div>
-          </details>
         </div>
       ) : (
         <>
