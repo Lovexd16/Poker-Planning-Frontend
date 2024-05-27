@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Project from "./components/pages/project/Project";
 import Issue from "./components/pages/issue/NewIssue";
-import IssueDetails from "./components/pages/issue/IssueDetails";
 import Login from "./components/pages/login/Login";
 import Register from "./components/pages/register/Register";
 import Statistics from "./components/pages/statistics/Statistics";
@@ -19,8 +18,9 @@ function App() {
     return savedState ? JSON.parse(savedState) : false;
   });
 
-  const [selectedProject, setSelectedProject] = useState<ProjectInterface | null>(null);  
-  
+  const [selectedProject, setSelectedProject] =
+    useState<ProjectInterface | null>(null);
+
   useEffect(() => {
     localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
@@ -45,7 +45,6 @@ function App() {
 
   return (
     <>
-
       <Navigation
         setPage={setPage}
         setIsLoggedIn={setIsLoggedIn}
@@ -53,8 +52,7 @@ function App() {
         currentPage={page}
       />
 
-      
-{isLoggedIn && (
+      {isLoggedIn && (
         <Project
           setPage={setPage}
           setIsProjectSelected={(value: boolean) => {
@@ -70,16 +68,17 @@ function App() {
           selectedProject={selectedProject}
         />
       )}
-  
+
       {
         {
           login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,
           register: <Register setPage={setPage} />,
           issue: <Issue projectId={""} />,
-          issueDetails: <IssueDetails />,
           statistics: <Statistics />,
           newproject: <NewProject setPage={setPage} />,
-          selectedproject: <SelectedProject projectId={""} selectedProject={null} />
+          selectedproject: (
+            <SelectedProject projectId={""} selectedProject={null} />
+          ),
         }[page]
       }
     </>

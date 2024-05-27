@@ -89,7 +89,9 @@ function EditIssue({
           </label>
           <br />
           <br />
-          <button type="submit">Redigera issue</button>
+          <button className="issueButtons" type="submit">
+            Redigera issue
+          </button>
         </form>
       </details>
     </>
