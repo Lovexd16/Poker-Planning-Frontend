@@ -10,6 +10,7 @@ import SelectedProject from "./components/pages/project/SelectedProject";
 import ProjectInterface from "./components/interface/ProjectInterface";
 import InactiveProject from "./components/pages/statistics/InactiveProject";
 
+
 function App() {
   const [page, setPage] = useState<string>("");
 
@@ -75,7 +76,7 @@ function App() {
           login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,
           register: <Register setPage={setPage} />,
           issue: <Issue projectId={""} />,
-          inactiveprojects: <InactiveProject />,
+          inactiveproject: <InactiveProject />,
           newproject: <NewProject setPage={setPage} />,
           selectedproject: <SelectedProject projectId={""} selectedProject={null} />
         }[page]
