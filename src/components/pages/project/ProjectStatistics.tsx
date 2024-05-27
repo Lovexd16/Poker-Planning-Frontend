@@ -17,12 +17,22 @@ function ProjectStatistics({projectId}: {projectId: string}) {
         return <p>Laddar...</p>;
     }
 
+    const differens = selectedProject.totalAgreedTime - selectedProject.totalActualTimeSpent;
+    const differensClass = differens < 0 ? 'red' : 'green';
+
     return (
         <>
             <div key={selectedProject.projectId}>
                 <p>{"Total estimerad tid för projekt: " + selectedProject.totalAgreedTime + "h"}</p>
                 <p>{"Total spenderad tid för projekt: " + selectedProject.totalActualTimeSpent + "h"}</p>
-            </div>
+                
+                <div className="differenscontainer">
+                <p>Differens mellan estimerad tid och spenderad tid för projektet:</p><p className={`differens ${differensClass}`}>
+                    {differens + "h"}
+                </p>
+                </div>
+
+                </div>
         </>
     );
 }
