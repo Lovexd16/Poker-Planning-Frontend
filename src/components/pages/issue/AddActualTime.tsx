@@ -39,25 +39,29 @@ function AddActualTimeSpent({ issueId }: { issueId: string }) {
 
   return (
     <>
-      <div>Hur långt tid tog issuet egentligen?</div>
-      <form onSubmit={actualTimeSpentForIssue}>
-        <select
-          value={newActualTimeSpent.actualTimeSpent}
-          onChange={(e) =>
-            setNewActualTimeSpent({
-              ...newActualTimeSpent,
-              actualTimeSpent: Number(e.target.value),
-            })
-          }
-        >
-          <option value={0}>Sätt egentlig tid tid</option>
-          <option value={1}>1h</option>
-          <option value={2}>2h</option>
-          <option value={4}>4h</option>
-          <option value={8}>8h</option>
-        </select>
-        <button type="submit">Sätt tid!</button>
-      </form>
+      <details>
+        <summary>Hur långt tid tog issuet egentligen?</summary>
+        <form onSubmit={actualTimeSpentForIssue}>
+          <select
+            value={newActualTimeSpent.actualTimeSpent}
+            onChange={(e) =>
+              setNewActualTimeSpent({
+                ...newActualTimeSpent,
+                actualTimeSpent: Number(e.target.value),
+              })
+            }
+          >
+            <option value={0}>Sätt egentlig tid tid</option>
+            <option value={1}>1h</option>
+            <option value={2}>2h</option>
+            <option value={4}>4h</option>
+            <option value={8}>8h</option>
+          </select>
+          <button className="issueButtons" type="submit">
+            Sätt tid!
+          </button>
+        </form>
+      </details>
     </>
   );
 }

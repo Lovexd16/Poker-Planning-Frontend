@@ -10,6 +10,18 @@
     cursor: pointer; 
     transition: background-color 0.3s; /
 }
+
+.issueButtons {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    font-weight:500;
+    padding: 8px 15px; 
+    background-color: #2a2358;
+    color: rgb(231, 235, 238); 
+    border-radius: 5px; 
+    cursor: pointer; 
+    
+}
   
 .button:hover {
   background-color: #2a2352; 
@@ -42,5 +54,26 @@
 
 .differens {
   margin-left: 6px; 
+}
+
+.chatcontainer {
+  max-width: 400px;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc; 
+  padding: 10px; 
+  word-wrap: break-word;
+}
+
+.messagecontainer {
+  max-width: 400px;
+  max-height: 200px;
+  border: 1px solid #ccc; 
+  padding: 10px;
+}
+
+.totalchat {
+    margin-right: 20px; 
+    margin-top: 100px;  
 }
   
