@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import IssueInterface from "../../interface/IssueInterface";
 import IssueMessage from "./IssueMessage";
-import AddAgreedTime from "./AddAgreedTime";
 import AddActualTimeSpent from "./AddActualTime";
-import EditIssue from "./EditIssue";
 
 function SelectedIssue({ issueId }: { issueId: string }) {
   const [selectedIssue, setSelectedIssue] = useState<IssueInterface | null>(
@@ -25,8 +23,7 @@ function SelectedIssue({ issueId }: { issueId: string }) {
     return <p>Laddar...</p>;
   }
 
-  const differens =
-    selectedIssue.agreedTime - selectedIssue.actualTimeSpent;
+  const differens = selectedIssue.agreedTime - selectedIssue.actualTimeSpent;
   const differensClass = differens < 0 ? "red" : "green";
 
   return (
@@ -83,14 +80,16 @@ function SelectedIssue({ issueId }: { issueId: string }) {
             ? "Ingen spenderad tid är satt"
             : selectedIssue.actualTimeSpent + "h"}
         </p>
-        
+
         <IssueMessage issueId={selectedIssue?.issueId || ""} />
         <AddActualTimeSpent issueId={selectedIssue?.issueId || ""} />
       </div>
       <div className="differenscontainer">
-          <p>Differens mellan estimerad tid och spenderad tid för det här issuet:</p>
-          <p className={`differens ${differensClass}`}>{differens + "h"}</p>
-        </div>
+        <p>
+          Differens mellan estimerad tid och spenderad tid för det här issuet:
+        </p>
+        <p className={`differens ${differensClass}`}>{differens + "h"}</p>
+      </div>
     </>
   );
 }

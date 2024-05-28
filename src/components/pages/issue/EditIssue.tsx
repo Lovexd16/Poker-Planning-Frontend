@@ -36,7 +36,7 @@ function EditIssue({
         if (!response.ok) {
           throw new Error("Kunde inte redigera issue!");
         }
-        return response.json(); // För att få det uppdaterade svaret
+        return response.json();
       })
       .then((data) => {
         console.log("Issue updated successfully:", data);
