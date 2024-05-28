@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import IssueInterface from "../../interface/IssueInterface";
 import IssueMessage from "./IssueMessage";
 import AddActualTimeSpent from "./AddActualTime";
+import DeleteIssue from "./DeleteIssue";
 
 function SelectedIssue({ issueId }: { issueId: string }) {
   const [selectedIssue, setSelectedIssue] = useState<IssueInterface | null>(
@@ -80,9 +81,9 @@ function SelectedIssue({ issueId }: { issueId: string }) {
             ? "Ingen spenderad tid är satt"
             : selectedIssue.actualTimeSpent + "h"}
         </p>
-
         <IssueMessage issueId={selectedIssue?.issueId || ""} />
         <AddActualTimeSpent issueId={selectedIssue?.issueId || ""} />
+        <DeleteIssue issueId={selectedIssue?.issueId || ""} />
       </div>
       <div className="differenscontainer">
         <p>
