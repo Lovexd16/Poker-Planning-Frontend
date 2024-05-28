@@ -16,7 +16,7 @@ function IsDone({ projectId }: { projectId: string }) {
     const token = localStorage.getItem("token") || "";
 
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/project/${projectId}/isdone`,
+      `http://localhost:8080/project/${projectId}/isdone`,
       {
         method: "PATCH",
         headers: {

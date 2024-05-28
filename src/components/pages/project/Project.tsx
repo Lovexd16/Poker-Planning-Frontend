@@ -26,7 +26,7 @@ function Project({ setPage, setIsProjectSelected, setSelectedProject }: Props) {
     const loggedInUser = decodedToken.sub;
 
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/activeprojects/${loggedInUser}`,
+      `http://localhost:8080/activeprojects/${loggedInUser}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

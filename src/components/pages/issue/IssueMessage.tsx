@@ -8,7 +8,7 @@ function IssueMessage({ issueId }: { issueId: string }) {
   const fetchConversation = () => {
     const token = localStorage.getItem("token") || "";
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/issue/${issueId}/conversation`,
+      `http://localhost:8080/issue/${issueId}/conversation`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ function IssueMessage({ issueId }: { issueId: string }) {
     setIssueMessages((prevMessages) => [...prevMessages, newMessageData]);
 
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/issue/${issueId}/${loggedInUser}/conversation`,
+      `http://localhost:8080/issue/${issueId}/${loggedInUser}/conversation`,
       {
         method: "POST",
         headers: {

@@ -18,7 +18,7 @@ function Login({ setPage, setIsLoggedIn }: Props) {
   const loginUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    fetch("https://seahorse-app-f89t8.ondigitalocean.app/loginuser", {
+    fetch("http://localhost:8080/loginuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

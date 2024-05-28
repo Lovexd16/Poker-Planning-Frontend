@@ -25,7 +25,7 @@ function EditProject({
     const token = localStorage.getItem("token") || "";
 
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/project/changenameanddescription/${projectId}`,
+      `http://localhost:8080/project/changenameanddescription/${projectId}`,
       {
         method: "PATCH",
         headers: {

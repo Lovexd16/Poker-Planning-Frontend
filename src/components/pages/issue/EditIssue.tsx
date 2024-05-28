@@ -25,7 +25,7 @@ function EditIssue({
     const token = localStorage.getItem("token") || "";
 
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/editissue/${issueId}`,
+      `http://localhost:8080/editissue/${issueId}`,
       {
         method: "PATCH",
         headers: {

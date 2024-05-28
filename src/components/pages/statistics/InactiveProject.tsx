@@ -22,7 +22,7 @@ function InactiveProject() {
     const loggedInUser = decodedToken.sub;
 
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/inactiveprojects/${loggedInUser}`,
+      `http://localhost:8080/inactiveprojects/${loggedInUser}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -16,7 +16,7 @@ function Issue({ projectId }: { projectId: string }) {
     const loggedInUser = decodedToken.sub;
 
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/issue/${loggedInUser}/${projectId}`,
+      `http://localhost:8080/issue/${loggedInUser}/${projectId}`,
       {
         method: "POST",
         headers: {

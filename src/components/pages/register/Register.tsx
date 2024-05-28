@@ -17,7 +17,7 @@ function Register({ setPage }: Props) {
   const registerUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    fetch("https://seahorse-app-f89t8.ondigitalocean.app/user", {
+    fetch("http://localhost:8080/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

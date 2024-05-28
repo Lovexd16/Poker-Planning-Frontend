@@ -13,7 +13,7 @@ function DeleteProject({ projectId }: { projectId: string }) {
 
     if (confirmed) {
       fetch(
-        `https://seahorse-app-f89t8.ondigitalocean.app/project/${projectId}`,
+        `http://localhost:8080/project/${projectId}`,
         {
           method: "DELETE",
           headers: {
