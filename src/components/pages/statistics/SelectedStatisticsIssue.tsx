@@ -8,7 +8,7 @@ function SelectedStatisticsIssue({ issueId }: { issueId: string }) {
     useState<IssueInterface | null>(null);
 
   useEffect(() => {
-    fetch(`https://seahorse-app-f89t8.ondigitalocean.app/issue/${issueId}`)
+    fetch(`http://localhost:8080/issue/${issueId}`)
       .then((res) => res.json())
       .then((data) => setSelectedStatisticsIssue(data))
       .catch((error) => console.error("Error fetching project:", error));

@@ -15,7 +15,7 @@ function AddAgreedTime({ issueId }: { issueId: string }) {
     const token = localStorage.getItem("token") || "";
 
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/issue/${issueId}/agreedtime`,
+      `http://localhost:8080/issue/${issueId}/agreedtime`,
       {
         method: "POST",
         headers: {

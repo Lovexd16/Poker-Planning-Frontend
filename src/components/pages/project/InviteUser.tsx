@@ -54,7 +54,7 @@ function InviteUser({ projectId }: { projectId: string }) {
     e.preventDefault();
 
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/project/adduser/${projectId}/${selectedUser?.userId}`,
+      `http://localhost:8080/project/adduser/${projectId}/${selectedUser?.userId}`,
       {
         method: "POST",
         headers: {

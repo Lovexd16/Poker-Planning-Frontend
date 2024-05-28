@@ -16,7 +16,7 @@ function AddActualTimeSpent({ issueId }: { issueId: string }) {
     const token = localStorage.getItem("token") || "";
 
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/issue/${issueId}/actualTimeSpent`,
+      `http://localhost:8080/issue/${issueId}/actualTimeSpent`,
       {
         method: "PATCH",
         headers: {

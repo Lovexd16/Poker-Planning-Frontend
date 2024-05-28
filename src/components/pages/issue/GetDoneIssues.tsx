@@ -23,7 +23,7 @@ function GetDoneIssues({ projectId }: { projectId: string }) {
     const token = localStorage.getItem("token") || "";
 
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/issues/${projectId}/inactive`,
+      `http://localhost:8080/issues/${projectId}/inactive`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -14,7 +14,7 @@ function SelectedIssue({ issueId }: { issueId: string }) {
   );
 
   useEffect(() => {
-    fetch(`https://seahorse-app-f89t8.ondigitalocean.app/issue/${issueId}`)
+    fetch(`http://localhost:8080/issue/${issueId}`)
       .then((res) => res.json())
       .then((data) => setSelectedIssue(data))
       .catch((error) => console.error("Error fetching project:", error));

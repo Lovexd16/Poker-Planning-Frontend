@@ -21,7 +21,7 @@ function NewProject({ setPage }: Props) {
     const loggedInUser = decodedToken.sub;
 
     fetch(
-      `https://seahorse-app-f89t8.ondigitalocean.app/project/${loggedInUser}`,
+      `http://localhost:8080/project/${loggedInUser}`,
       {
         method: "POST",
         headers: {
