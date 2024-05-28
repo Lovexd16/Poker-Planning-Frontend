@@ -15,17 +15,20 @@ function Issue({ projectId }: { projectId: string }) {
     const decodedToken = jwtDecode(token);
     const loggedInUser = decodedToken.sub;
 
-    fetch(`http://localhost:8080/issue/${loggedInUser}/${projectId}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        ...newIssue,
-        issueCreatedByUser: { userId: loggedInUser },
-      }),
-    })
+    fetch(
+      `https://seahorse-app-f89t8.ondigitalocean.app/issue/${loggedInUser}/${projectId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          ...newIssue,
+          issueCreatedByUser: { userId: loggedInUser },
+        }),
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Kunde inte spara issue!");

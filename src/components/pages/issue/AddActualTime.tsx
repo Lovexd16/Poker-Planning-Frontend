@@ -15,14 +15,17 @@ function AddActualTimeSpent({ issueId }: { issueId: string }) {
 
     const token = localStorage.getItem("token") || "";
 
-    fetch(`http://localhost:8080/issue/${issueId}/actualTimeSpent`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(newActualTimeSpent.actualTimeSpent),
-    })
+    fetch(
+      `https://seahorse-app-f89t8.ondigitalocean.app/issue/${issueId}/actualTimeSpent`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(newActualTimeSpent.actualTimeSpent),
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Kunde inte spara den egentliga tiden!");

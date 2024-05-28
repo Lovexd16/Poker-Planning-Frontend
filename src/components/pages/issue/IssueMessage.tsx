@@ -7,52 +7,54 @@ function IssueMessage({ issueId }: { issueId: string }) {
 
   const fetchConversation = () => {
     const token = localStorage.getItem("token") || "";
-    fetch(`http://localhost:8080/issue/${issueId}/conversation`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    fetch(
+      `https://seahorse-app-f89t8.ondigitalocean.app/issue/${issueId}/conversation`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => setIssueMessages(data))
       .catch((error) => console.error("Error fetching messages:", error));
   };
 
   useEffect(() => {
-    fetchConversation(); 
+    fetchConversation();
   }, [issueId, issueMessages]);
 
   const sendMessage = () => {
     const token = localStorage.getItem("token") || "";
     const decodedToken = jwtDecode(token);
     const loggedInUser = decodedToken.sub;
-  
+
     const timestamp = new Date().toLocaleTimeString("sv-SE");
-  
+
     const newMessageData = `${loggedInUser}: ${newMessage} - skickat: ${timestamp}`;
-  
-    setIssueMessages(prevMessages => [...prevMessages, newMessageData]);
-  
+
+    setIssueMessages((prevMessages) => [...prevMessages, newMessageData]);
+
     fetch(
-      `http://localhost:8080/issue/${issueId}/${loggedInUser}/conversation`,
+      `https://seahorse-app-f89t8.ondigitalocean.app/issue/${issueId}/${loggedInUser}/conversation`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: newMessageData
+        body: newMessageData,
       }
     )
       .then((res) => res.text())
       .then((data) => console.log("Message sent:", data))
       .catch((error) => console.error("Error sending message:", error));
-  
+
     setNewMessage("");
   };
 
   const token = localStorage.getItem("token") || "";
   const loggedInUser = jwtDecode(token).sub;
-
 
   return (
     <>
@@ -61,14 +63,18 @@ function IssueMessage({ issueId }: { issueId: string }) {
           {issueMessages.map((message, index) => {
             const isOwnMessage = message.startsWith(`${loggedInUser}:`);
             return (
-              <p key={index} className={isOwnMessage ? "myMessage" : "otherMessage"}>
+              <p
+                key={index}
+                className={isOwnMessage ? "myMessage" : "otherMessage"}
+              >
                 {message}
               </p>
             );
           })}
         </div>
         <div className="messagecontainer">
-          <input className="inputForm"
+          <input
+            className="inputForm"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
           ></input>

@@ -12,7 +12,7 @@ function DeleteIssue({ issueId }: { issueId: string }) {
     const token = localStorage.getItem("token") || "";
 
     if (confirmed) {
-      fetch(`http://localhost:8080/issue/${issueId}`, {
+      fetch(`https://seahorse-app-f89t8.ondigitalocean.app/issue/${issueId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

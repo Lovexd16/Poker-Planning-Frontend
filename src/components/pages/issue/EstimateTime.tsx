@@ -18,7 +18,7 @@ function EstimateTime({ issueId }: { issueId: string }) {
     const loggedInUser = decodedToken.sub;
 
     fetch(
-      `http://localhost:8080/issue/${issueId}/${loggedInUser}/estimatedTime`,
+      `https://seahorse-app-f89t8.ondigitalocean.app/issue/${issueId}/${loggedInUser}/estimatedTime`,
       {
         method: "POST",
         headers: {

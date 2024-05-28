@@ -6,7 +6,7 @@ function ProjectStatistics({ projectId }: { projectId: string }) {
     useState<ProjectInterface | null>(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/project/${projectId}`)
+    fetch(`https://seahorse-app-f89t8.ondigitalocean.app/project/${projectId}`)
       .then((res) => res.json())
       .then((data) => setSelectedProject(data))
       .catch((error) => console.error("Error fetching project:", error));
