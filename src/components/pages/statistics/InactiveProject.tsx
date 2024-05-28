@@ -21,11 +21,14 @@ function InactiveProject() {
     const decodedToken = jwtDecode(token);
     const loggedInUser = decodedToken.sub;
 
-    fetch(`http://localhost:8080/inactiveprojects/${loggedInUser}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    fetch(
+      `https://seahorse-app-f89t8.ondigitalocean.app/inactiveprojects/${loggedInUser}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => setInactiveProjects(data))
       .catch((error) => {
@@ -42,7 +45,7 @@ function InactiveProject() {
     <>
       {showProjects ? (
         <div>
-          <details  open={true}>
+          <details open={true}>
             <summary>Dina avklarade projekt</summary>
             <div style={{ maxHeight: "30vh", overflowY: "auto" }}>
               {inactiveProjects.length > 0 ? (

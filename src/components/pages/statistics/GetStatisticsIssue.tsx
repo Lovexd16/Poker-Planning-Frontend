@@ -21,11 +21,14 @@ function GetIssue({ projectId }: { projectId: string }) {
   useEffect(() => {
     const token = localStorage.getItem("token") || "";
 
-    fetch(`http://localhost:8080/issues/${projectId}/active`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    fetch(
+      `https://seahorse-app-f89t8.ondigitalocean.app/issues/${projectId}/active`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => setIssues(data));
   }, [issues]);

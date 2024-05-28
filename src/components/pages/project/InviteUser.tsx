@@ -25,7 +25,7 @@ function InviteUser({ projectId }: { projectId: string }) {
     const loggedInUser = decodedToken.sub;
 
     fetch(
-      `http://localhost:8080/user/getallusersexceptloggedin/${loggedInUser}`,
+      `https://seahorse-app-f89t8.ondigitalocean.app/user/getallusersexceptloggedin/${loggedInUser}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ function InviteUser({ projectId }: { projectId: string }) {
     e.preventDefault();
 
     fetch(
-      `http://localhost:8080/project/adduser/${projectId}/${selectedUser?.userId}`,
+      `https://seahorse-app-f89t8.ondigitalocean.app/project/adduser/${projectId}/${selectedUser?.userId}`,
       {
         method: "POST",
         headers: {
@@ -73,7 +73,9 @@ function InviteUser({ projectId }: { projectId: string }) {
 
           throw new Error("Kunde inte bjuda in användaren!");
         }
-        setSuccessMessage("Du bjöd precis in " + selectedUser?.username + " till projektet!" )
+        setSuccessMessage(
+          "Du bjöd precis in " + selectedUser?.username + " till projektet!"
+        );
         setInputValue("");
         setInvitedUser({
           username: "",
@@ -99,13 +101,18 @@ function InviteUser({ projectId }: { projectId: string }) {
             onChange={handleInputChange}
             placeholder="Sök användare..."
           />
-          <button className="issueButtons" type="submit">Bjud in</button>
+          <button className="issueButtons" type="submit">
+            Bjud in
+          </button>
         </form>
         {inputValue !== "" && (
           <div>
             {filteredUsers.map((user) => (
               <div key={user.userId}>
-                <button className="issueButtons" onClick={() => selectUser(user)}>
+                <button
+                  className="issueButtons"
+                  onClick={() => selectUser(user)}
+                >
                   {user.username}
                 </button>
                 <br />

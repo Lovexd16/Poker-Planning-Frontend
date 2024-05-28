@@ -17,7 +17,7 @@ function Register({ setPage }: Props) {
   const registerUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    fetch("http://localhost:8080/user", {
+    fetch("https://seahorse-app-f89t8.ondigitalocean.app/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,10 +33,12 @@ function Register({ setPage }: Props) {
       .then((data) => {
         console.log("Användare lades till: ", data);
         setErrorMessage("");
-        setSuccessMessage("Du är nu registrerad! Omdirigeras till login om 3 sek...");
+        setSuccessMessage(
+          "Du är nu registrerad! Omdirigeras till login om 3 sek..."
+        );
         setTimeout(() => {
-          setPage("login")
-        },3000);
+          setPage("login");
+        }, 3000);
       })
       .catch((error) => {
         console.error("Fel vid tillägning: ", error);
@@ -51,7 +53,8 @@ function Register({ setPage }: Props) {
         <label>
           Användarnamn
           <br />
-          <input className="inputForm"
+          <input
+            className="inputForm"
             type="text"
             required
             value={newUser.username}
@@ -65,7 +68,8 @@ function Register({ setPage }: Props) {
         <label>
           Lösenord
           <br />
-          <input className="inputForm"
+          <input
+            className="inputForm"
             type="password"
             required
             value={newUser.password}
@@ -76,9 +80,11 @@ function Register({ setPage }: Props) {
         </label>
         <br />
         <br />
-        {errorMessage && <p style={{ fontSize: '20px'}}>{errorMessage}</p>}
-        {successMessage && <p style={{ fontSize: '20px'}}>{successMessage}</p>}
-        <button className="button" type="submit">Registrera ny användare</button>
+        {errorMessage && <p style={{ fontSize: "20px" }}>{errorMessage}</p>}
+        {successMessage && <p style={{ fontSize: "20px" }}>{successMessage}</p>}
+        <button className="button" type="submit">
+          Registrera ny användare
+        </button>
       </form>
     </div>
   );
