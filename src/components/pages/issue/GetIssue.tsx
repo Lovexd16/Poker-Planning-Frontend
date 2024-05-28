@@ -1,8 +1,6 @@
 import IssueInterface from "../../interface/IssueInterface";
 import { useEffect, useState } from "react";
 import SelectedIssue from "./SelectedIssue";
-import EstimateTime from "./EstimateTime";
-import NewIssue from "./NewIssue";
 
 function GetIssue({ projectId }: { projectId: string }) {
   const [issues, setIssues] = useState<IssueInterface[]>([]);
@@ -35,14 +33,15 @@ function GetIssue({ projectId }: { projectId: string }) {
 
   return (
     <div>
-      
-      {/* <h2>Aktiva issues</h2> */}
       {showIssues ? (
         <div style={{ maxHeight: "30vh", overflowY: "auto" }}>
           {issues.length > 0 ? (
             issues.map((issue: IssueInterface) => (
               <div key={issue.issueId}>
-                <button className="issueButtonss" onClick={() => selectIssue(issue)}>
+                <button
+                  className="issueButtonss"
+                  onClick={() => selectIssue(issue)}
+                >
                   {issue.issueName}
                 </button>
               </div>
@@ -51,15 +50,13 @@ function GetIssue({ projectId }: { projectId: string }) {
             <p>Du har inga aktiva issues.</p>
           )}
         </div>
-        
       ) : (
         <>
           <button className="issueButtons" onClick={goBack}>
             Gå tillbaka till alla issues
           </button>
-          
+
           <SelectedIssue issueId={selectedIssue?.issueId || ""} />
-    
         </>
       )}
     </div>

@@ -9,21 +9,18 @@ import NewProject from "./components/pages/project/NewProject";
 import SelectedProject from "./components/pages/project/SelectedProject";
 import ProjectInterface from "./components/interface/ProjectInterface";
 import InactiveProject from "./components/pages/statistics/InactiveProject";
-import GetIssue from "./components/pages/issue/GetIssue";
-
-
 
 function App() {
   const [page, setPage] = useState<string>("");
-  
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
     const savedState = localStorage.getItem("isLoggedIn");
     return savedState ? JSON.parse(savedState) : false;
   });
 
-  const [selectedProject, setSelectedProject] = useState<ProjectInterface | null>(null);  
-  
+  const [selectedProject, setSelectedProject] =
+    useState<ProjectInterface | null>(null);
+
   useEffect(() => {
     localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
@@ -53,7 +50,6 @@ function App() {
 
   return (
     <>
-
       <Navigation
         setPage={setPage}
         setIsLoggedIn={setIsLoggedIn}
@@ -61,8 +57,7 @@ function App() {
         currentPage={page}
       />
 
-      
-{isLoggedIn && (
+      {isLoggedIn && (
         <Project
           setPage={setPage}
           setIsProjectSelected={(value: boolean) => {
@@ -72,13 +67,15 @@ function App() {
         />
       )}
 
-      {isLoggedIn && selectedProject && page === `selectedproject/${selectedProject.projectName}` && (
-        <SelectedProject
-          projectId={selectedProject.projectId}
-          selectedProject={selectedProject}
-        />
-      )}
-  
+      {isLoggedIn &&
+        selectedProject &&
+        page === `selectedproject/${selectedProject.projectName}` && (
+          <SelectedProject
+            projectId={selectedProject.projectId}
+            selectedProject={selectedProject}
+          />
+        )}
+
       {
         {
           login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,
@@ -86,7 +83,9 @@ function App() {
           issue: <Issue projectId={""} />,
           inactiveproject: <InactiveProject />,
           newproject: <NewProject setPage={setPage} />,
-          selectedproject: <SelectedProject projectId={""} selectedProject={null} />,
+          selectedproject: (
+            <SelectedProject projectId={""} selectedProject={null} />
+          ),
         }[page]
       }
     </>
