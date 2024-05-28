@@ -14,19 +14,22 @@ function IssueIsDone({ issueId }: { issueId: string }) {
   const markAsDone = () => {
     const token = localStorage.getItem("token") || "";
 
-    fetch(`http://localhost:8080/issue/${issueId}/isdone`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ ...newIsDone }),
-    })
+    fetch(
+      `https://seahorse-app-f89t8.ondigitalocean.app/issue/${issueId}/isdone`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ ...newIsDone }),
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Kunde inte markera klart issue!");
         }
-        setSuccessMessage("Issuet är nu avklarad!")
+        setSuccessMessage("Issuet är nu avklarad!");
         setNewIsDone({
           isDone: false,
         });

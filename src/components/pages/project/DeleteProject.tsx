@@ -12,12 +12,15 @@ function DeleteProject({ projectId }: { projectId: string }) {
     const token = localStorage.getItem("token") || "";
 
     if (confirmed) {
-      fetch(`http://localhost:8080/project/${projectId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      fetch(
+        `https://seahorse-app-f89t8.ondigitalocean.app/project/${projectId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("Kunde inte radera projekt!");

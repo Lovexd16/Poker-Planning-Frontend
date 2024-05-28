@@ -24,14 +24,17 @@ function EditIssue({
 
     const token = localStorage.getItem("token") || "";
 
-    fetch(`http://localhost:8080/editissue/${issueId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(newEditIssue),
-    })
+    fetch(
+      `https://seahorse-app-f89t8.ondigitalocean.app/editissue/${issueId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(newEditIssue),
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Kunde inte redigera issue!");
