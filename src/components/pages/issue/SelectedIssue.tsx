@@ -6,6 +6,7 @@ import AddAgreedTime from "./AddAgreedTime";
 import AddActualTimeSpent from "./AddActualTime";
 import EstimateTime from "./EstimateTime";
 import DeleteIssue from "./DeleteIssue";
+import { jwtDecode } from "jwt-decode";
 
 function SelectedIssue({ issueId }: { issueId: string }) {
   const [selectedIssue, setSelectedIssue] = useState<IssueInterface | null>(
@@ -23,10 +24,13 @@ function SelectedIssue({ issueId }: { issueId: string }) {
     return <p>Laddar...</p>;
   }
 
-  if (!selectedIssue) {
-    return <p>Laddar...</p>;
-  }
-
+   
+  const token = localStorage.getItem('token') || '';
+  const loggedInUser = jwtDecode(token)?.sub || '';
+  const userHasEstimated = selectedIssue.estimatedTime && selectedIssue.estimatedTime.some(estimate => {
+  const estimateUser = estimate.split(" - ")[1]; 
+  return estimateUser === loggedInUser;
+});
   return (
     <>
       <div className="totalcontainer" key={selectedIssue.issueId}>
@@ -53,16 +57,17 @@ function SelectedIssue({ issueId }: { issueId: string }) {
         </p>
         <p>
           <strong>
-            <u>{"Estimerad tid av medlemmar "}</u>
+            <u>Estimerad tid av medlemmar</u>
           </strong>{" "}
           <br />
           {selectedIssue.estimatedTime && selectedIssue.estimatedTime.length > 0
-            ? selectedIssue.estimatedTime.map((estimate, index) => (
-                <span key={index}>
-                  {index > 0 && <br />} {estimate}
-                </span>
-              ))
-            : "Inga estimeringar gjorda ännu"}
+          ? selectedIssue.estimatedTime.map((estimate, index) => (
+              <span key={index}>
+                {index > 0 && <br />} 
+                {userHasEstimated || estimate === loggedInUser ? estimate : "Anonym"}
+              </span>
+            ))
+          : "Inga estimeringar gjorda ännu"}
         </p>
         <p>
           <strong>
