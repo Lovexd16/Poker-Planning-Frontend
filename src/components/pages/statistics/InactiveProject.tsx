@@ -3,7 +3,7 @@ import { jwtDecode } from "jwt-decode";
 import ProjectInterface from "../../interface/ProjectInterface";
 import SelectedStatisticsProject from "./SelectedStatisticsProject";
 
-function Statistics() {
+function InactiveProject() {
   const [inactiveProjects, setInactiveProjects] = useState<ProjectInterface[]>(
     []
   );
@@ -68,8 +68,8 @@ function Statistics() {
         </div>
       ) : (
         <>
-          <button className="button" onClick={goBack}>
-            Gå tillbaka till alla projekt
+          <button className="issueButtons" onClick={goBack}>
+            Gå tillbaka till alla avklarade projekt
           </button>
           <SelectedStatisticsProject
             projectId={selectedProject?.projectId || ""}
@@ -80,4 +80,4 @@ function Statistics() {
   );
 }
 
-export default Statistics;
+export default InactiveProject;

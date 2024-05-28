@@ -9,6 +9,8 @@ function IssueIsDone({ issueId }: { issueId: string }) {
     isDone: false,
   });
 
+  const [successMessage, setSuccessMessage] = useState<string>("");
+
   const markAsDone = () => {
     const token = localStorage.getItem("token") || "";
 
@@ -24,6 +26,7 @@ function IssueIsDone({ issueId }: { issueId: string }) {
         if (!response.ok) {
           throw new Error("Kunde inte markera klart issue!");
         }
+        setSuccessMessage("Issuet är nu avklarad!")
         setNewIsDone({
           isDone: false,
         });
@@ -37,7 +40,10 @@ function IssueIsDone({ issueId }: { issueId: string }) {
     <>
       <details>
         <summary>Markera issue som klar</summary>
-        <button onClick={markAsDone}>Markera som klar</button>
+        <button className="issueButtons" onClick={markAsDone}>
+          Markera som klar
+        </button>
+        {successMessage && <p>{successMessage}</p>}
       </details>
     </>
   );

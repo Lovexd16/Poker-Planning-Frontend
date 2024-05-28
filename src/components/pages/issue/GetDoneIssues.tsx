@@ -1,8 +1,8 @@
 import IssueInterface from "../../interface/IssueInterface";
 import { useEffect, useState } from "react";
-import SelectedIssue from "./SelectedIssue";
+import SelectedDoneIssue from "./SelectedDoneIssue";
 
-function GetIssue({ projectId }: { projectId: string }) {
+function GetDoneIssues({ projectId }: { projectId: string }) {
   const [issues, setIssues] = useState<IssueInterface[]>([]);
   const [selectedIssue, setSelectedIssue] = useState<IssueInterface | null>(
     null
@@ -22,7 +22,7 @@ function GetIssue({ projectId }: { projectId: string }) {
   useEffect(() => {
     const token = localStorage.getItem("token") || "";
 
-    fetch(`http://localhost:8080/issues/${projectId}/active`, {
+    fetch(`http://localhost:8080/issues/${projectId}/inactive`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -47,20 +47,19 @@ function GetIssue({ projectId }: { projectId: string }) {
               </div>
             ))
           ) : (
-            <p>Du har inga aktiva issues.</p>
+            <p>Du har inga avklarade issues.</p>
           )}
         </div>
       ) : (
         <>
-          <button className="issueButtons" onClick={goBack}>
-            Gå tillbaka till alla issues
+          <button className="button" onClick={goBack}>
+            Gå tillbaka till alla avklarade issues
           </button>
-
-          <SelectedIssue issueId={selectedIssue?.issueId || ""} />
+          <SelectedDoneIssue issueId={selectedIssue?.issueId || ""} />
         </>
       )}
     </div>
   );
 }
 
-export default GetIssue;
+export default GetDoneIssues;

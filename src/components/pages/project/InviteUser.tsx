@@ -12,6 +12,7 @@ function InviteUser({ projectId }: { projectId: string }) {
   const [inputValue, setInputValue] = useState<string>("");
   const [selectedUser, setSelectedUser] = useState<UserInterface | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
   const selectUser = (user: UserInterface) => {
     setSelectedUser(user);
@@ -72,6 +73,8 @@ function InviteUser({ projectId }: { projectId: string }) {
 
           throw new Error("Kunde inte bjuda in användaren!");
         }
+        setSuccessMessage("Du bjöd precis in " + selectedUser?.username + " till projektet!" )
+        setInputValue("");
         setInvitedUser({
           username: "",
         });
@@ -88,23 +91,29 @@ function InviteUser({ projectId }: { projectId: string }) {
         <summary>Bjud in användare</summary>
         <form onSubmit={inviteUser}>
           <input
+            className="inputForm"
             type="text"
+            required
+            size={30}
             value={inputValue}
             onChange={handleInputChange}
             placeholder="Sök användare..."
-            required
           />
-          <button type="submit">Bjud in</button>
+          <button className="issueButtons" type="submit">Bjud in</button>
         </form>
         {inputValue !== "" && (
           <div>
             {filteredUsers.map((user) => (
-              <button onClick={() => selectUser(user)} key={user.userId}>
-                {user.username}
-              </button>
+              <div key={user.userId}>
+                <button className="issueButtons" onClick={() => selectUser(user)}>
+                  {user.username}
+                </button>
+                <br />
+              </div>
             ))}
           </div>
         )}
+        {successMessage && <p>{successMessage}</p>}
         {errorMessage && <p>{errorMessage}</p>}
       </details>
     </>

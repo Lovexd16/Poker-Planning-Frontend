@@ -9,22 +9,129 @@
     border-radius: 5px; 
     cursor: pointer; 
     transition: background-color 0.3s; /
-  }
-  
-  .button:hover {
-      background-color: #2a2352; 
-      font-weight: 600;
-    }
-  
-  .button:active { 
-    background-color: #2a2352; 
-    font-weight:600;
+}
 
-  }
+.issueButtons {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    font-weight:500;
+    padding: 1px 11px; 
+    background-color: #2a2358;
+    color: rgb(231, 235, 238); 
+    border-radius: 5px; 
+    cursor: pointer; 
+    
+}
 
-  .button.active {
-    background-color: #2a2352; 
-    font-weight: 600;
-  }
+.issueButtonss{
 
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    font-weight:500;
+    padding: 10px 20px; 
+    background-color: #2a2358;
+    color: rgb(231, 235, 238); 
+    border-radius: 5px; 
+    cursor: pointer; 
+    max-width: 700px;
+    max-height: 500px;
+    text-align: left;
+    margin-bottom: 10px;
+}
   
+.issueButtons:hover{
+  background-color: #2a2352; 
+  font-weight: 600;
+}
+
+.button:hover {
+  background-color: #2a2352; 
+  font-weight: 600;
+}
+  
+.button:active { 
+  background-color: #2a2352; 
+  font-weight:600;
+
+}
+
+.button.active {
+  background-color: #2a2352; 
+  font-weight: 600;
+}
+
+.green {
+  color: lightgreen;
+}
+  
+.red {
+  color:lightcoral;
+  }
+
+.differenscontainer {
+  display: flex;
+  margin-left: 410px; 
+}
+
+.differens {
+  margin-left: 6px; 
+}
+
+.chatcontainer {
+  width: 400px; 
+  height: 200px;
+  max-width: 400px;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc; 
+  padding: 10px; 
+  word-wrap: break-word;
+  border-radius: 5px; 
+  text-align: left;
+}
+
+.messagecontainer {
+  max-width: 400px;
+  max-height: 200px;
+  border: 1px solid #ccc; 
+  padding: 10px;
+  border-radius: 5px; 
+}
+
+.myMessage {
+  text-align: right;
+
+}
+
+.otherMessage {
+  text-align: left;
+ 
+}
+
+
+.totalchat {
+    margin-right: 380px; 
+    margin-top: 205px;  
+    position: absolute;
+    top: 100px;
+    right: 20px;
+}
+
+
+.totalcontainer {
+  display: flex;
+ 
+}
+
+.informationcontainer {
+  margin-top: 30px;
+  margin-left: 527px;
+  
+}
+
+.choicecontainer {
+  margin-left: 1000px;
+  margin-top: 360px;  
+  text-align: left;
+  position: absolute;
+}

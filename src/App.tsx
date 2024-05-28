@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Project from "./components/pages/project/Project";
 import Issue from "./components/pages/issue/NewIssue";
-import IssueDetails from "./components/pages/issue/IssueDetails";
 import Login from "./components/pages/login/Login";
 import Register from "./components/pages/register/Register";
-import Statistics from "./components/pages/statistics/Statistics";
 import Navigation from "./components/navigation/Navigation";
 import NewProject from "./components/pages/project/NewProject";
 import SelectedProject from "./components/pages/project/SelectedProject";
+import ProjectInterface from "./components/interface/ProjectInterface";
+import InactiveProject from "./components/pages/statistics/InactiveProject";
 
 function App() {
   const [page, setPage] = useState<string>("");
@@ -18,8 +18,9 @@ function App() {
     return savedState ? JSON.parse(savedState) : false;
   });
 
-  const [, setIsProjectSelected] = useState<boolean>(false);
-  
+  const [selectedProject, setSelectedProject] =
+    useState<ProjectInterface | null>(null);
+
   useEffect(() => {
     localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
@@ -42,9 +43,13 @@ function App() {
     window.history.pushState(null, "", "?page=" + pageUrl);
   }, [page]);
 
+  useEffect(() => {
+    console.log("Current page:", page);
+    console.log(selectedProject?.projectName);
+  }, [page]);
+
   return (
     <>
-
       <Navigation
         setPage={setPage}
         setIsLoggedIn={setIsLoggedIn}
@@ -52,20 +57,35 @@ function App() {
         currentPage={page}
       />
 
-      
-{isLoggedIn &&  (
-        <Project setPage={setPage} setIsProjectSelected={setIsProjectSelected} />
+      {isLoggedIn && (
+        <Project
+          setPage={setPage}
+          setIsProjectSelected={(value: boolean) => {
+            if (!value) setSelectedProject(null);
+          }}
+          setSelectedProject={setSelectedProject}
+        />
       )}
-  
+
+      {isLoggedIn &&
+        selectedProject &&
+        page === `selectedproject/${selectedProject.projectName}` && (
+          <SelectedProject
+            projectId={selectedProject.projectId}
+            selectedProject={selectedProject}
+          />
+        )}
+
       {
         {
           login: <Login setPage={setPage} setIsLoggedIn={setIsLoggedIn} />,
           register: <Register setPage={setPage} />,
           issue: <Issue projectId={""} />,
-          issueDetails: <IssueDetails />,
-          statistics: <Statistics />,
+          inactiveproject: <InactiveProject />,
           newproject: <NewProject setPage={setPage} />,
-          selectedproject: <SelectedProject projectId={""} selectedProject={null} />
+          selectedproject: (
+            <SelectedProject projectId={""} selectedProject={null} />
+          ),
         }[page]
       }
     </>
